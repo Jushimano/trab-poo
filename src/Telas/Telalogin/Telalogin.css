@@ -1,0 +1,54 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Impede a rolagem da página inteira */
+  }
+  
+.container {
+    width: 100%;
+    max-width: 380px; /* Largura máxima do iPhone 12 */
+    height: 844px; /* Altura do iPhone 12 */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    display: flex;
+    flex-direction: column; /* Ajusta a direção do layout para vertical */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #F6F3EC;
+}
+
+.logo{
+    position: absolute;
+    width: 200px; /* Defina a largura desejada */
+    height: auto; /* A altura será ajustada automaticamente para manter a proporção */
+    margin-bottom: 600px;
+}
+  
+.botao_marrom{
+    border-radius: 25px; /* Bordas arredondadas */
+    padding: 17px 50px; /* Espaçamento interno */
+    font-size: 14px; /* Tamanho da fonte */
+    cursor: pointer; /* Mostra o cursor de clique */
+    background-color: #967860; /* Cor de fundo marrom */
+    color: #F6F3EC; /* Cor do texto branco */
+    border: none; /* Remove a borda */
+    position: relative; /* Permite o posicionamento absoluto */
+    top: -90px; /* Move o botão 20px para cima */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona sombra preta */
+}
+
+.botao_google {
+    border-radius: 25px; /* Bordas arredondadas */
+    padding: 17px 50px; /* Espaçamento interno */
+    font-size: 14px; /* Tamanho da fonte */
+    cursor: pointer; /* Mostra o cursor de clique */
+    background-color: #F6F3EC; /* Cor de fundo branco */
+    color: #000000; /* Cor do texto preto */
+    border: none; /* Remove a borda */
+    position: absolute; /* Posiciona absolutamente */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Centraliza o botão */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona sombra preta */
+  }
