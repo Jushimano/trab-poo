@@ -7,7 +7,7 @@ html, body {
   
 .container {
     width: 100%;
-    max-width: 380px; /* Largura máxima do iPhone 12 */
+    max-width: 350px; /* Largura máxima do iPhone 12 */
     height: 844px; /* Altura do iPhone 12 */
     margin: 0 auto; /* Centraliza horizontalmente */
     display: flex;
@@ -27,28 +27,52 @@ html, body {
   
 .botao_marrom{
     border-radius: 25px; /* Bordas arredondadas */
-    padding: 17px 50px; /* Espaçamento interno */
-    font-size: 14px; /* Tamanho da fonte */
+    padding: 18px 50px; /* Espaçamento interno */
+    font-size: 11px; /* Tamanho da fonte */
     cursor: pointer; /* Mostra o cursor de clique */
     background-color: #967860; /* Cor de fundo marrom */
     color: #F6F3EC; /* Cor do texto branco */
     border: none; /* Remove a borda */
     position: relative; /* Permite o posicionamento absoluto */
-    top: -90px; /* Move o botão 20px para cima */
+    top: -120px; /* Move o botão 20px para cima */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona sombra preta */
 }
 
-.botao_google {
+.botao_google{
     border-radius: 25px; /* Bordas arredondadas */
-    padding: 17px 50px; /* Espaçamento interno */
-    font-size: 14px; /* Tamanho da fonte */
+    padding: 18px 80px; /* Espaçamento interno */
+    font-size: 11px; /* Tamanho da fonte */
+    font-weight: bold;
     cursor: pointer; /* Mostra o cursor de clique */
     background-color: #F6F3EC; /* Cor de fundo branco */
     color: #000000; /* Cor do texto preto */
-    border: none; /* Remove a borda */
-    position: absolute; /* Posiciona absolutamente */
-    top: 50%; /* Centraliza verticalmente */
-    left: 50%; /* Centraliza horizontalmente */
-    transform: translate(-50%, -50%); /* Centraliza o botão */
+    border: 1px solid #000000 ; /* Remove a borda */
+    position: relative; /* Permite o posicionamento absoluto */
+    top: -100px; /* Move o botão 20px para cima */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona sombra preta */
   }
+  
+.botao_facebook{
+    border-radius: 25px; /* Bordas arredondadas */
+    padding: 18px 75px; /* Espaçamento interno */
+    font-size: 11px; /* Tamanho da fonte */
+    font-weight: bold;
+    cursor: pointer; /* Mostra o cursor de clique */
+    background-color: #F6F3EC; /* Cor de fundo branco */
+    color: #000000; /* Cor do texto preto */
+    border: 1px solid #000000 ; /* Remove a borda */
+    position: relative; /* Permite o posicionamento absoluto */
+    top: -80px; /* Move o botão 20px para cima */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Adiciona sombra preta */
+  }
+
+.text{
+    font-size: 14px; /* Tamanho da fonte */
+    font-weight: bold;
+    position: absolute; /* Define o posicionamento absoluto */
+    bottom: 250px; /* Posiciona o elemento na parte inferior da tela */
+}
+
+.cadastro{
+    color:#967860;
+}
