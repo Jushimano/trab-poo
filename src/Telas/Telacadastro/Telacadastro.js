@@ -20,6 +20,7 @@ function Telacadastro() {
             navigate('/cadastroAgente');
         }
     };
+    
 
     return (
         <div className="container">
