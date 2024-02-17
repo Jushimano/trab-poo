@@ -5,6 +5,8 @@ import Telacadastro from './Telas/Telacadastro/Telacadastro';
 import CadastroCliente from './Telas/Telacadastro/cadastrocliente';
 import CadastroImob from './Telas/Telacadastro/cadastroImob';
 import CadastroAgente from './Telas/Telacadastro/cadastroAgente';
+import Logincel from './Telas/Telalogin/Logincel';
+import Telaprincipal from './Telas/Telaprincipal/Telaprincipal'
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/cadastroImob" element={<CadastroImob />} />
           <Route path="/cadastroAgente" element={<CadastroAgente />} />
           <Route path="/login" element={<Telalogin />} />
+          <Route path="/logincel" element={<Logincel />} />
+          <Route path="/telaprincipal" element={<Telaprincipal />} />
         </Routes>
       </div>
     </Router>
