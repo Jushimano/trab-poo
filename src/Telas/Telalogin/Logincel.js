@@ -21,7 +21,7 @@ function Logincel() {
             <p className="texto_add">Por favor, adicione corretamente o número:<br></br>Exemplo: (44)988269459</p>
             <input type="text" className="box_cel" /><br></br>
             <p className="texto_senha">Digite sua senha:<br></br></p>
-            <input type="password" className="box_senha" /><br></br>
+            <input type="password" className="box_senha1" /><br></br>
             <p className = "conta">Conta:</p>
             <select value={accountType} onChange={(e) => setAccountType(e.target.value)} className = "opcao">
                 <option value="cliente">Cliente</option>

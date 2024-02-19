@@ -15,6 +15,10 @@ function Telaprincipal() {
         navigate('/noah');
     };
 
+    const handlegerenciar = () => {
+        navigate('/gerenciar');
+    };
+
     return (
         <div className="container">
             <p className="texto_encontre">Encontre seu<br></br>imóvel dos sonhos</p>
@@ -30,7 +34,7 @@ function Telaprincipal() {
             {activeButton === 'casas' && <img src={casa} alt="Imagem Casas" className="noah" />}
             {activeButton === 'comercial' && <img src={atrium} alt="Imagem Comercial" className="noah" />}
             <img src={home} className="home"></img>
-            <button className = "botao_novo">Inserir novo imóvel</button>
+            <button onclick = {handlegerenciar} className = "botao_novo">Gerenciar imóvel</button>
         </div>
     )
 }

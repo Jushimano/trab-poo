@@ -9,6 +9,7 @@ import Logincel from './Telas/Telalogin/Logincel';
 import Telaprincipal from './Telas/Telaprincipal/Telaprincipal'
 import TelaprincipalImob from './Telas/Telaprincipal/TelaprincipalImob'
 import Telanoah from './Telas/noah/noah'
+import Telagerenciar from './Telas/GerenciarImovel/gerenciar'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/telaprincipal" element={<Telaprincipal />} />
           <Route path="/telaprincipalimob" element={<TelaprincipalImob />} />
           <Route path="/noah" element={<Telanoah/>} />
+          <Route path="/gerenciar" element={<Telagerenciar/>} />
         </Routes>
       </div>
     </Router>

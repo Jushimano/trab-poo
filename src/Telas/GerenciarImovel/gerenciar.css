@@ -1,0 +1,26 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  /* Impede a rolagem da página inteira */
+}
+
+.container {
+  width: 100%;
+  max-width: 350px;
+  /* Largura máxima do iPhone 12 */
+  height: 844px;
+  /* Altura do iPhone 12 */
+  margin: 0 auto;
+  /* Centraliza horizontalmente */
+  display: flex;
+  flex-direction: column;
+  /* Ajusta a direção do layout para vertical */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #F6F3EC;
+  overflow-x: hidden;
+}
