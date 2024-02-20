@@ -24,3 +24,24 @@ body {
   background-color: #F6F3EC;
   overflow-x: hidden;
 }
+
+.texto_imoveis{
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  position: relative;
+  top: -350px;
+}
+
+.botao_adicionar{
+  border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 10px;
+    cursor: pointer;
+    background-color: #9D6F4D;
+    color: #F6F3EC;
+    border: none;
+    position: relative;
+    bottom: -120px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
