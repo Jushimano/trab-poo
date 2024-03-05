@@ -10,6 +10,8 @@ import Telaprincipal from './Telas/Telaprincipal/Telaprincipal'
 import TelaprincipalImob from './Telas/Telaprincipal/TelaprincipalImob'
 import Telanoah from './Telas/noah/noah'
 import Telagerenciar from './Telas/GerenciarImovel/gerenciar'
+import Telaadd from './Telas/GerenciarImovel/Addimovel'
+import Telaadd2 from './Telas/GerenciarImovel/Addimovel2'
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/telaprincipalimob" element={<TelaprincipalImob />} />
           <Route path="/noah" element={<Telanoah/>} />
           <Route path="/gerenciar" element={<Telagerenciar/>} />
+          <Route path="/Addimovel" element={<Telaadd/>} />
+          <Route path="/Addimovel2" element={<Telaadd2/>} />
         </Routes>
       </div>
     </Router>

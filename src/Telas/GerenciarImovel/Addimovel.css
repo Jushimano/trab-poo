@@ -1,0 +1,145 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    /* Impede a rolagem da página inteira */
+}
+
+.container {
+    width: 100%;
+    max-width: 350px;
+    /* Largura máxima do iPhone 12 */
+    height: 844px;
+    /* Altura do iPhone 12 */
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
+    display: flex;
+    flex-direction: column;
+    /* Ajusta a direção do layout para vertical */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #F6F3EC;
+    overflow-x: hidden;
+}
+
+.texto_novo {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    position: relative;
+    top: -170px;
+}
+
+.box_texto1 {
+    border-radius: 15px;
+    padding: 12px 45px;
+    font-size: 15px;
+    background-color: #F6F3EC;
+    border: 0.1px solid #000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.texto_1 {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: -170px;
+}
+
+.box_texto2 {
+    border-radius: 15px;
+    padding: 12px 45px;
+    font-size: 15px;
+    background-color: #F6F3EC;
+    border: 0.1px solid #000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.texto_2 {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: -150px;
+}
+
+.box_texto3 {
+    border-radius: 15px;
+    padding: 10px 0px;
+    font-size: 15px;
+    background-color: #F6F3EC;
+    border: 0.1px solid #000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.texto_3 {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: -130px;
+}
+
+.box_texto4 {
+    border-radius: 15px;
+    padding: 10px 0px;
+    font-size: 15px;
+    background-color: #F6F3EC;
+    border: 0.1px solid #000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.texto_4 {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: -190px;
+    left: 120px;
+}
+
+.box_texto5 {
+    border-radius: 15px;
+    padding: 10px 0px;
+    font-size: 15px;
+    background-color: #F6F3EC;
+    border: 0.1px solid #000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.texto_5 {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: -175px;
+}
+
+.texto_6 {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: -150px;
+}
+
+
+.botao_continuar {
+    border-radius: 25px;
+    padding: 12px 45px;
+    font-size: 10px;
+    cursor: pointer;
+    background-color: #9D6F4D;
+    color: #F6F3EC;
+    border: none;
+    position: relative;
+    bottom: 120px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.voltar {
+    width: 20px; /* Largura desejada */
+    height: auto; /* Altura automática para manter a proporção */
+    position: relative;
+    top: -570px;
+    left: -130px;
+    cursor: pointer;
+}
