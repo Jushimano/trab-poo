@@ -16,15 +16,15 @@ function Gerenciar({ vetor }) {
 
     return (
         <div className="container">
-            <p className="texto_imoveis">Seus imóveis</p>
-            <button onClick={handleAdd} type="button" className="botao_adicionar">
-                Adicionar novo imóvel
-            </button>
-            <img src={flecha} alt="" className="voltar3" onClick={handleVoltar}></img>
-
-            {/* Mapear o vetor de imóveis para criar os cards */}
+            <div className='C2'>
+                <p className="texto_imoveis">Seus imóveis</p>
+                <button onClick={handleAdd} type="button" className="botao_adicionar">
+                    Adicionar novo imóvel
+                </button>
+                <img src={flecha} alt="" className="voltar3" onClick={handleVoltar}></img>
+            </div>
             {vetor.map((imovel, index) => (
-                <div key={index} className="card_imoveis">
+                <div key={index} className={index === 0 ? "card_imoveis_primeiro" : "card_imoveis"}>
                     <img src={imovel.imagem} alt="Imóvel" className="img_imo"></img>
                     <button className="classif">{imovel.tipo}</button>
                     <p className="nome_imo">{imovel.nome}</p>
@@ -42,3 +42,4 @@ function Gerenciar({ vetor }) {
 }
 
 export default Gerenciar;
+

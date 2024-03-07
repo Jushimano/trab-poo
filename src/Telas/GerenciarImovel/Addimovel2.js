@@ -1,6 +1,5 @@
 import React from 'react';
 import './Addimovel2.css';
-import home1 from "./Barra de opçoes (1).png"
 import flecha from "./arrow-back-outline.png"
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para a navegação
 
@@ -42,7 +41,6 @@ function Addimovel2(){
                     <input type="text" className="box_estado" /><br></br>
                 </label>
             </form>
-            <img src={home1} alt="" className="home1"></img>
             <img src={flecha} alt="" className="voltar2" onClick={handleVoltar}></img>
             <button type="button" className="botao_concluir" onClick={handleConcluir}>
                 Concluir

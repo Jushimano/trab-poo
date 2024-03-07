@@ -62,7 +62,7 @@ body {
     font-size: 14px;
     font-weight: bold;
     position: relative;
-    top: -150px;
+    top: -140px;
 }
 
 .box_texto3 {
@@ -78,7 +78,7 @@ body {
     font-size: 14px;
     font-weight: bold;
     position: relative;
-    top: -130px;
+    top: -110px;
 }
 
 .box_texto4 {
@@ -94,7 +94,7 @@ body {
     font-size: 14px;
     font-weight: bold;
     position: relative;
-    top: -190px;
+    top: -170px;
     left: 120px;
 }
 
@@ -111,14 +111,14 @@ body {
     font-size: 14px;
     font-weight: bold;
     position: relative;
-    top: -175px;
+    top: -145px;
 }
 
 .texto_6 {
     font-size: 14px;
     font-weight: bold;
     position: relative;
-    top: -150px;
+    top: -120px;
 }
 
 
@@ -131,7 +131,7 @@ body {
     color: #F6F3EC;
     border: none;
     position: relative;
-    bottom: 120px;
+    bottom: 80px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
