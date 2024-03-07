@@ -25,32 +25,117 @@ body {
   overflow-x: hidden;
 }
 
-.texto_imoveis{
+.texto_imoveis {
   font-size: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
   position: relative;
-  top: -350px;
+  top: -260px;
 }
 
-.botao_adicionar{
+.botao_adicionar {
   border-radius: 25px;
-    padding: 12px 25px;
-    font-size: 10px;
-    cursor: pointer;
-    background-color: #9D6F4D;
-    color: #F6F3EC;
-    border: none;
-    position: relative;
-    bottom: -80px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  padding: 12px 25px;
+  font-size: 10px;
+  cursor: pointer;
+  background-color: #9D6F4D;
+  color: #F6F3EC;
+  border: none;
+  position: relative;
+  bottom: 30%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .voltar3 {
-  width: 20px; /* Largura desejada */
-  height: auto; /* Altura automática para manter a proporção */
+  width: 20px;
+  /* Largura desejada */
+  height: auto;
+  /* Altura automática para manter a proporção */
   position: relative;
-  top: -425px;
+  top: -335px;
   left: -130px;
   cursor: pointer;
+}
+
+.card_imoveis {
+  background-color: #E9D9C9;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: -28%;
+  width: 280px;
+  height: 150px;
+  /* Aumentando a altura do card */
+}
+
+.classif {
+  border-radius: 25px;
+  padding: 5px 20px;
+  font-size: 10px;
+  cursor: pointer;
+  background-color: #9D6F4D;
+  color: #F6F3EC;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.img_imo {
+  width: 100px;
+  /* Voltando ao tamanho original da imagem */
+  height: 100px;
+  /* Voltando ao tamanho original da imagem */
+  border-radius: 8px;
+  display: block;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.nome_imo {
+  font-size: 20px; /* Ajustando o tamanho do texto do nome do imóvel */
+  font-weight: bold;
+  position: absolute;
+  left: 120px;
+  top: 20px;
+}
+
+.end_imo {
+  font-size: 9px; /* Ajustando o tamanho do texto do endereço do imóvel */
+  font-weight: bold;
+  position: absolute;
+  left: 120px;
+  top: 60px;
+  margin: 5px 0;
+}
+
+
+.botao-excluir,
+.botao-editar {
+  border-radius: 25px;
+  padding: 10px 50px;
+  /* Diminuindo o comprimento dos botões */
+  font-size: 10px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 10px;
+}
+
+.botao-editar {
+  background-color: #9D6F4D;
+  color: #F6F3EC;
+  right: 10px;
+}
+
+.botao-excluir {
+  background-color: #F6F3EC;
+  color: #000000;
+  left: 10px;
 }

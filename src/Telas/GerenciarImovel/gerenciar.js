@@ -1,10 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import flecha from "./arrow-back-outline.png"
-import home1 from "./Barra de opçoes (1).png";
 import './gerenciar.css';
 
-function Gerenciar() {
+function Gerenciar({ vetor }) {
     const navigate = useNavigate(); // Utilize useNavigate para a navegação
 
     const handleAdd = () => {
@@ -21,8 +20,23 @@ function Gerenciar() {
             <button onClick={handleAdd} type="button" className="botao_adicionar">
                 Adicionar novo imóvel
             </button>
-            <img src={home1} alt="" className="home1"></img>
             <img src={flecha} alt="" className="voltar3" onClick={handleVoltar}></img>
+
+            {/* Mapear o vetor de imóveis para criar os cards */}
+            {vetor.map((imovel, index) => (
+                <div key={index} className="card_imoveis">
+                    <img src={imovel.imagem} alt="Imóvel" className="img_imo"></img>
+                    <button className="classif">{imovel.tipo}</button>
+                    <p className="nome_imo">{imovel.nome}</p>
+                    <div className='end_imo'>
+                        <p>{imovel.rua} - {imovel.bairro}</p>
+                        <p>{imovel.complemento}</p>
+                        <p>{imovel.cidade} - {imovel.estado}</p>
+                    </div>
+                    <button className="botao-excluir">Excluir</button>
+                    <button className="botao-editar">Editar</button>
+                </div>
+            ))}
         </div>
     );
 }
