@@ -45,9 +45,29 @@ function App() {
 
   //obtendo os dados do formulario
   const aoDigitar = (e) => {
-    console.log(e.target);
+    setObjImovel({...objImovel, [e.target.name]: e.target.value });
   }
 
+  //Cadastrar imovel
+  const cadastrar = () => {
+    fetch('colocar aqui a url da aplicação backend, ex: https://localhost:8080/cadastrar', {
+      method:'post',
+      body:JSON.stringify(objImovel),
+      headers:{
+        'Content-type':'application/json',
+        'Accept':'application/json'
+      }
+    })
+    .then(retorno => retorno.json())
+    .then(retorno_convertido => {
+      if(retorno_convertido.mensagem != undefined){
+        alert(retorno_convertido.mensagem);
+      }else{
+        setImoveis([...imoveis, retorno_convertido]);
+        alert('Imovel cadastrado com sucesso!');
+      }
+    })
+  }
 
   return (
     <Router>
@@ -70,7 +90,7 @@ function App() {
             </>
           } />
           <Route path="/Addimovel" element={<Telaadd aoDigitar={aoDigitar} />} />
-          <Route path="/Addimovel2" element={<Telaadd2 aoDigitar={aoDigitar} />} />
+          <Route path="/Addimovel2" element={<Telaadd2 aoDigitar={aoDigitar}  cadastrar={cadastrar} />} />
         </Routes>
       </div>
     </Router>

@@ -3,7 +3,7 @@ import './Addimovel.css';
 import flecha from "./arrow-back-outline.png";
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate para a navegação
 
-function Addimovel({ eventoTeclado }) {
+function Addimovel({ eventoTeclado}) { //problema: Tem duas paginas de cadastro, quando muda de pagina, perde os valores nessas variaveis? Ou se mantem e depois coloca tudo de uma vez?
     const navigate = useNavigate(); // Utilize useNavigate para a navegação
 
     // Função para voltar para a tela de gerenciamento

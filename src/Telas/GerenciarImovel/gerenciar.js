@@ -22,6 +22,7 @@ function Gerenciar({vetor}) {
                 Adicionar novo imóvel
             </button>
             <img src={flecha} alt="" className="voltar3" onClick={handleVoltar}></img>
+
             {vetor.map((imovel, index) => (
                 <div key={index} className={index === 0 ? "card_imoveis_primeiro" : "card_imoveis"}>
                     <img src={imovel.imagem} alt="Imóvel" className="img_imo"></img>
