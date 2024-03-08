@@ -16,9 +16,25 @@ import Telaadd2 from './Telas/GerenciarImovel/Addimovel2'
 
 function App() {
 
+  //objeto imovel
+  const imovel = {
+    nome: '',
+    area: 0,
+    num_quarto: 0,
+    num_vagas: 0,
+    tipo: '',
+    imagem: '', //coloca caminho?
+    rua: '',
+    bairro: '',
+    complemento: '',
+    estado: '',
+    cidade: ''
+  }
+
   //usei isso para obter os imoveis que estão no back
   //useState
   const [imoveis, setImoveis] = useState([]);
+  const [objImovel, setObjImovel] = useState(imovel)
 
   //UseEffect
   useEffect(() => {
@@ -26,6 +42,11 @@ function App() {
       .then(retorno => retorno.json())
       .then(retorno_convertido => setImoveis(retorno_convertido));
   }, []);
+
+  //obtendo os dados do formulario
+  const aoDigitar = (e) => {
+    console.log(e.target);
+  }
 
 
   return (
@@ -48,9 +69,8 @@ function App() {
               <Telagerenciar imoveis={imoveis} />
             </>
           } />
-          <Route path="/Addimovel" element={<Telaadd />} />
-          <Route path="/Addimovel2" element={<Telaadd2 />} />
-
+          <Route path="/Addimovel" element={<Telaadd aoDigitar={aoDigitar} />} />
+          <Route path="/Addimovel2" element={<Telaadd2 aoDigitar={aoDigitar} />} />
         </Routes>
       </div>
     </Router>

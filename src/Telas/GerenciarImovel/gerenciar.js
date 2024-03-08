@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import flecha from "./arrow-back-outline.png"
+import apartamento from "./apartamento1 3.png"
 import './gerenciar.css';
 
-function Gerenciar({ vetor }) {
+function Gerenciar() {
     const navigate = useNavigate(); // Utilize useNavigate para a navegação
 
     const handleAdd = () => {
@@ -15,31 +16,26 @@ function Gerenciar({ vetor }) {
     };
 
     return (
-        <div className="container">
-            <div className='C2'>
-                <p className="texto_imoveis">Seus imóveis</p>
-                <button onClick={handleAdd} type="button" className="botao_adicionar">
-                    Adicionar novo imóvel
-                </button>
-                <img src={flecha} alt="" className="voltar3" onClick={handleVoltar}></img>
-            </div>
-            {vetor.map((imovel, index) => (
-                <div key={index} className={index === 0 ? "card_imoveis_primeiro" : "card_imoveis"}>
-                    <img src={imovel.imagem} alt="Imóvel" className="img_imo"></img>
-                    <button className="classif">{imovel.tipo}</button>
-                    <p className="nome_imo">{imovel.nome}</p>
-                    <div className='end_imo'>
-                        <p>{imovel.rua} - {imovel.bairro}</p>
-                        <p>{imovel.complemento}</p>
-                        <p>{imovel.cidade} - {imovel.estado}</p>
-                    </div>
-                    <button className="botao-excluir">Excluir</button>
-                    <button className="botao-editar">Editar</button>
+        <div className="container1">
+            <p className="texto_imoveis">Seus imóveis</p>
+            <button onClick={handleAdd} type="button" className="botao_adicionar">
+                Adicionar novo imóvel
+            </button>
+            <img src={flecha} alt="" className="voltar3" onClick={handleVoltar}></img>
+
+            <div className="card_imoveis_primeiro">
+                <img src={apartamento} alt="Imóvel" className="img_imo"></img>
+                <button className="classif">Apartamento</button>
+                <p className="nome_imo">Noah</p>
+                <div className='end_imo'>
+                    <p>Rua Tiradentes - Zona 1</p>
+                    <p>Maringá - PR</p>
                 </div>
-            ))}
+                <button className="botao-editar">Editar</button>
+                <button className="botao-excluir">Excluir</button>
+            </div>
         </div>
     );
 }
 
 export default Gerenciar;
-
