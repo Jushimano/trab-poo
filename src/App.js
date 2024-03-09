@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import Telalogin from './Telas/Telalogin/Telalogin';
 import Telacadastro from './Telas/Telacadastro/Telacadastro';
 import CadastroCliente from './Telas/Telacadastro/cadastrocliente';
@@ -8,72 +7,9 @@ import CadastroImob from './Telas/Telacadastro/cadastroImob';
 import CadastroAgente from './Telas/Telacadastro/cadastroAgente';
 import Logincel from './Telas/Telalogin/Logincel';
 import Telaprincipal from './Telas/Telaprincipal/Telaprincipal'
-import TelaprincipalImob from './Telas/Telaprincipal/TelaprincipalImob'
 import Telanoah from './Telas/noah/noah'
-import Telagerenciar from './Telas/GerenciarImovel/gerenciar'
-import Telaadd from './Telas/GerenciarImovel/Addimovel'
-import Telaadd2 from './Telas/GerenciarImovel/Addimovel2'
 
 function App() {
-
-  //objeto imovel
-  const imovel = {
-    nome: '',
-    area: 0,
-    num_quarto: 0,
-    num_vagas: 0,
-    tipo: '',
-    imagem: '', //coloca caminho?
-    rua: '',
-    bairro: '',
-    complemento: '',
-    estado: '',
-    cidade: ''
-  }
-
-  //usei isso para obter os imoveis que estão no back
-  //useState
-  const [imoveis, setImoveis] = useState([]);
-  const [objImovel, setObjImovel] = useState(imovel)
-
-  //UseEffect
-  useEffect(() => {
-    fetch("colocar aqui a url da aplicação backend, ex: https://localhost:8080/listar")
-      .then(retorno => retorno.json())
-      .then(retorno_convertido => setImoveis(retorno_convertido));
-  }, []);
-
-  //obtendo os dados do formulario
-  const aoDigitar = (e) => {
-    setObjImovel({...objImovel, [e.target.name]: e.target.value });
-  }
-
-  //Cadastrar imovel
-  const cadastrar = () => {
-    fetch('colocar aqui a url da aplicação backend, ex: https://localhost:8080/cadastrar', {
-      method:'post',
-      body:JSON.stringify(objImovel),
-      headers:{
-        'Content-type':'application/json',
-        'Accept':'application/json'
-      }
-    })
-    .then(retorno => retorno.json())
-    .then(retorno_convertido => {
-      if(retorno_convertido.mensagem != undefined){
-        alert(retorno_convertido.mensagem);
-      }else{
-        setImoveis([...imoveis, retorno_convertido]);
-        alert('Imovel cadastrado com sucesso!');
-        limparFormulario()
-      }
-    })
-  }
-
- //limpar formulario
- const limparFormulario = () => {
-  setObjImovel(imovel);
- }
 
   return (
     <Router>
@@ -87,16 +23,7 @@ function App() {
           <Route path="/login" element={<Telalogin />} />
           <Route path="/logincel" element={<Logincel />} />
           <Route path="/telaprincipal" element={<Telaprincipal />} />
-          <Route path="/telaprincipalimob" element={<TelaprincipalImob />} />
           <Route path="/noah" element={<Telanoah />} />
-          <Route path="/gerenciar" element={
-            <>
-              <Telagerenciar />
-              <Telagerenciar imoveis={imoveis} />
-            </>
-          } />
-          <Route path="/Addimovel" element={<Telaadd aoDigitar={aoDigitar} obj = {objImovel}/>} />
-          <Route path="/Addimovel2" element={<Telaadd2 aoDigitar={aoDigitar}  cadastrar={cadastrar} obj = {objImovel} />} />
         </Routes>
       </div>
     </Router>
