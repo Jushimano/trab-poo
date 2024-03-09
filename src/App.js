@@ -65,9 +65,15 @@ function App() {
       }else{
         setImoveis([...imoveis, retorno_convertido]);
         alert('Imovel cadastrado com sucesso!');
+        limparFormulario()
       }
     })
   }
+
+ //limpar formulario
+ const limparFormulario = () => {
+  setObjImovel(imovel);
+ }
 
   return (
     <Router>
@@ -89,8 +95,8 @@ function App() {
               <Telagerenciar imoveis={imoveis} />
             </>
           } />
-          <Route path="/Addimovel" element={<Telaadd aoDigitar={aoDigitar} />} />
-          <Route path="/Addimovel2" element={<Telaadd2 aoDigitar={aoDigitar}  cadastrar={cadastrar} />} />
+          <Route path="/Addimovel" element={<Telaadd aoDigitar={aoDigitar} obj = {objImovel}/>} />
+          <Route path="/Addimovel2" element={<Telaadd2 aoDigitar={aoDigitar}  cadastrar={cadastrar} obj = {objImovel} />} />
         </Routes>
       </div>
     </Router>
