@@ -8,6 +8,7 @@ import CadastroAgente from './Telas/Telacadastro/cadastroAgente';
 import Logincel from './Telas/Telalogin/Logincel';
 import Telaprincipal from './Telas/Telaprincipal/Telaprincipal'
 import Telanoah from './Telas/noah/noah'
+import Telaconsultoria from './Telas/consultorias/formulario'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/logincel" element={<Logincel />} />
           <Route path="/telaprincipal" element={<Telaprincipal />} />
           <Route path="/noah" element={<Telanoah />} />
+          <Route path="/formulario" element={<Telaconsultoria />} />
         </Routes>
       </div>
     </Router>

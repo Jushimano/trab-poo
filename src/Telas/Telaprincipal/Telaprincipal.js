@@ -15,6 +15,12 @@ function Telaprincipal() {
     const handleImageClick = () => {
         navigate('/noah');
     };
+
+    const handleConsultoriaClick = () => {
+       navigate('/formulario')
+        console.log("Botão de consultoria clicado!");
+    };
+
     return (
         <div className="container">
             <p className="texto_encontre">Encontre seu<br></br>imóvel dos sonhos</p>
@@ -29,9 +35,11 @@ function Telaprincipal() {
             {activeButton === 'apartamentos' && <img src={noah} alt="Imagem Apartamento" className="noah" onClick={handleImageClick}/>}
             {activeButton === 'casas' && <img src={casa} alt="Imagem Casas" className="noah" />}
             {activeButton === 'comercial' && <img src={atrium} alt="Imagem Comercial" className="noah" />}
+            <button  className = 'consultoria' onClick={handleConsultoriaClick}>Consultoria</button>
             <img src={home} alt = "" className="home"></img>
         </div>
     )
 }
 
 export default Telaprincipal;
+
