@@ -5,13 +5,14 @@ body {
     height: 100%;
     /*overflow: hidden;*/
     /* Impede a rolagem da página inteira */
+    /*background-color: #F6F3EC;*/
 }
 
 .container1 {
     width: 100%;
     max-width: 350px;
     /* Largura máxima do iPhone 12 */
-    max-height: 98vh;
+    height: 610px;
     /* Define uma altura mínima igual à altura da janela de visualização */
     margin: 0 auto;
     /* Centraliza horizontalmente */
@@ -22,12 +23,13 @@ body {
     align-items: center;
     position: relative;
     background-color: #F6F3EC;
-    border-top: 2px solid #ccc;
+    border-top: 2px solid #F6F3EC;
     /* Adiciona uma borda superior */
     padding-top: 20px;
     /* Espaçamento acima do conteúdo */
     overflow-y: auto;
     /* Permite que a barra de rolagem vertical seja controlada automaticamente */
+    /*border: 1px solid #967860;*/
 }
 
 

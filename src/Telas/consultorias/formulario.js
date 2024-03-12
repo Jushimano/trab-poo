@@ -1,21 +1,21 @@
 import React from "react";
 import './formulario.css';
 
-function Formulario() {
+function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar, remover, alterar }) {
     return (
         <div className="container1">
             <text className="titulo_con">CONSULTORIAS</text>
             <form>
-                <input type='text' placeholder='Seu nome' className="texto_info " />
-                <input type='text' placeholder='Nome agente' className="texto_info " />
-                <input type='text' placeholder='Data' className="texto_info " />
-                <input type='text' placeholder='Horario' className="texto_info " />
+                <input type='text' value={obj.nome} onChange={eventoTeclado} name='nome' placeholder='Seu nome' className="texto_info " />
+                <input type='text' value={obj.agente} onChange={eventoTeclado} name='agente' placeholder='Nome agente' className="texto_info " />
+                <input type='text' value={obj.data} onChange={eventoTeclado} name='data' placeholder='Data' className="texto_info " />
+                <input type='text' value={obj.horario} onChange={eventoTeclado} name='horario' placeholder='Horario' className="texto_info " />
 
                 <div className="button-wrapper">
-                    <input type='button' value='Cadastrar' className="botao_con" />
-                    <input type='button' value='Alterar' className="botao_con" />
-                    <input type='button' value='Remover' className="botao_con" />
-                    <input type='button' value='Cancelar' className="botao_con" />
+                    <input type='button' value='Cadastrar' onClick={cadastrar} className="botao_con" />
+                    <input type='button' value='Alterar' onClick={alterar} className="botao_con" />
+                    <input type='button' value='Remover' onClick={remover} className="botao_con" />
+                    <input type='button' value='Cancelar' onClick={cancelar} className="botao_con" />
                 </div>
             </form>
             <table className="tabela_con">
@@ -27,69 +27,18 @@ function Formulario() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="coluna1">1</td>
-                        <td className="coluna2">Julia Shimano Saitoooooooooooooooooooooooo</td>
-                        <td className="coluna3">
-                            <button className='botao_selecionar'>Selecionar</button>
-                        </td>
-                    </tr>
+                    {
+                        vetor.map((obj, indice) => (
+                            <tr key={indice}>
+                                <td className="coluna1">{indice + 1}</td>
+                                <td className="coluna2">{obj.nome}</td>
+                                <td className="coluna3">
+                                    <button onClick={() => { selecionar(indice) }} className='botao_selecionar'>Selecionar</button>
+                                </td>
+                            </tr>
+                        ))
+                    }
+
                 </tbody>
             </table>
         </div>
