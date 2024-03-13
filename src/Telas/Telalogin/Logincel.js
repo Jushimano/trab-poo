@@ -7,17 +7,16 @@ function Logincel() {
 
     const [accountType, setAccountType] = useState('cliente');
 
-    const handleLogin = () => {
-
-        if(accountType === 'cliente'){
+    const handleLogin1 = () => {
+        const accountTypeLower = accountType.toLowerCase();
+        if (accountTypeLower === 'cliente') {
             navigate('/telaprincipal');
-        } else if(accountType === 'Agente Imobiliário'){
-            navigate('/telaprincipalAg');
-        } else{
+        } else if (accountTypeLower === 'imobiliaria') {
             navigate('/telaprincipalImob');
+        } else if (accountTypeLower === 'agente') {
+            navigate('/telaprincipalAg');
         }
     };
-
 
     return (
         <div className='container'>
@@ -32,7 +31,7 @@ function Logincel() {
                 <option value="agente">Agente Imobiliário</option>
                 <option value="imobiliaria">Imobiliária</option>
             </select><br></br>
-            <button onClick={handleLogin} type="button" className="botao_login">Login</button>
+            <button onClick={handleLogin1} type="button" className="botao_login">Login</button>
             <p className="text">Não possui uma conta? <Link to="/cadastro" className="cadastro">Cadastre-se</Link></p>
         </div>
     )

@@ -17,7 +17,7 @@ function TelaprincipalAg() {
     };
 
     const handleConsultoriaClick = () => {
-       navigate('/formulario')
+       navigate('/formularioAgente')
         console.log("Botão de consultoria clicado!");
     };
 

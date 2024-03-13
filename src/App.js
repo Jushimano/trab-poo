@@ -12,6 +12,7 @@ import Telanoah from './Telas/noah/noah'
 import Telaconsultoria from './Telas/consultorias/formulario'
 import TelaprincipalAg from './Telas/Telaprincipal/TelaprincipalAg'
 import TelaprincipalImob from './Telas/Telaprincipal/TelaprincipalImob'
+import TelaconsultoriaAg from './Telas/consultorias/formularioAgente'
 
 function App() {
 
@@ -20,13 +21,40 @@ function App() {
     codigo: 0,
     nome: '',
     agente: '',
-    data: null, //será que é null?
-    horario: null,
+    data: '', //será que é null?
+    horario: '',
   }
+
+  //objeto cliente
+  const cliente = {
+    nome: '',
+    celular: '',
+    email: '',
+    cpf: '',
+    senha: '',
+  };
+
+  //objeto agente
+  const agente = {
+    nome: '',
+    celular: '',
+    email: '',
+    creci: '',
+    senha: '',
+  };
+
 
   //useState
   const [consultorias, setConsultoria] = useState([]);
   const [objConsultoria, setObjConsultoria] = useState(consultoria);
+
+  // Estado para armazenar os clientes cadastrados
+  const [clientes, setCliente] = useState([]);
+  const [objCliente, setObjCliente] = useState(cliente);
+
+  // Estado para armazenar os agentes imobiliarios cadastrados
+  const [agentes, setAgente] = useState([]);
+  const [objAgente, setObjAgente] = useState(agente);
 
   //UseEffect
   useEffect(() => {
@@ -35,9 +63,69 @@ function App() {
       .then(retorno_convertido => setConsultoria(retorno_convertido));
   }, []);
 
+  //cadastrar cliente
+  const cadastrarCliente = () => {
+    fetch('http://localhost:8080/cliente/cadastrar', {
+      method: 'post',
+      body: JSON.stringify(objCliente),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }) //colocar aqui url do backend
+      .then(retorno => retorno.json())
+      .then(retorno_convertido => {
+
+        //colocar no back mensagens de erro! Conforme o video
+        if (retorno_convertido.mensagem !== undefined) {
+          alert(retorno_convertido.mesagem);
+        } else {
+          setCliente([...clientes, retorno_convertido]);
+          alert('Cliente cadastrado com sucesso!');
+          limparFormularioCliente();
+        }
+
+      })
+  }
+
+  //cadastrar agente
+  const cadastrarAgente = () => {
+    fetch('http://localhost:8080/agente/cadastrar', {
+      method: 'post',
+      body: JSON.stringify(objAgente),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }) //colocar aqui url do backend
+      .then(retorno => retorno.json())
+      .then(retorno_convertido => {
+
+        //colocar no back mensagens de erro! Conforme o video
+        if (retorno_convertido.mensagem !== undefined) {
+          alert(retorno_convertido.mesagem);
+        } else {
+          setAgente([...agentes, retorno_convertido]);
+          alert('Cliente cadastrado com sucesso!');
+          limparFormularioAgente();
+        }
+
+      })
+  }
+
   //obtendo os dados do formulario
   const aoDigitar = (e) => {
     setObjConsultoria({ ...objConsultoria, [e.target.name]: e.target.value });
+  }
+
+  //obtendo os dados do formulario cadastro cliente
+  const aoDigitar1 = (e) => {
+    setObjCliente({ ...objCliente, [e.target.name]: e.target.value });
+  }
+
+  //obtendo os dados do formulario cadastro agente
+  const aoDigitar2 = (e) => {
+    setObjAgente({ ...objAgente, [e.target.name]: e.target.value });
   }
 
   //cadastrar produto
@@ -146,6 +234,16 @@ function App() {
     setObjConsultoria(consultoria);
   }
 
+  //limpar formulario cliente
+  const limparFormularioCliente = () => {
+    setObjCliente(cliente);
+  }
+
+  //limpar formulario agente
+  const limparFormularioAgente = () => {
+    setObjAgente(agente);
+  }
+
   //selecionar consultoria
   const selecionarConsultoria = (indice) => {
     setObjConsultoria(consultorias[indice]);
@@ -157,9 +255,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Telalogin />} />
           <Route path="/cadastro" element={<Telacadastro />} />
-          <Route path="/cadastrocliente" element={<CadastroCliente />} />
+          <Route path="/cadastrocliente" element={<CadastroCliente eventoTeclado={aoDigitar1} cadastrarCliente={cadastrarCliente} obj={objCliente} />} />
           <Route path="/cadastroImob" element={<CadastroImob />} />
-          <Route path="/cadastroAgente" element={<CadastroAgente />} />
+          <Route path="/cadastroAgente" element={<CadastroAgente eventoTeclado={aoDigitar2} cadastrarAgente={cadastrarAgente} obj={objAgente}/>} />
           <Route path="/login" element={<Telalogin />} />
           <Route path="/logincel" element={<Logincel />} />
           <Route path="/telaprincipal" element={<Telaprincipal />} />
@@ -167,6 +265,7 @@ function App() {
           <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
           <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
           <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} />} />
+          <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} />} />
         </Routes>
       </div>
     </Router>
@@ -174,5 +273,3 @@ function App() {
 }
 
 export default App;
-
-
