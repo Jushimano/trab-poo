@@ -10,6 +10,8 @@ import Logincel from './Telas/Telalogin/Logincel';
 import Telaprincipal from './Telas/Telaprincipal/Telaprincipal'
 import Telanoah from './Telas/noah/noah'
 import Telaconsultoria from './Telas/consultorias/formulario'
+import TelaprincipalAg from './Telas/Telaprincipal/TelaprincipalAg'
+import TelaprincipalImob from './Telas/Telaprincipal/TelaprincipalImob'
 
 function App() {
 
@@ -162,6 +164,8 @@ function App() {
           <Route path="/logincel" element={<Logincel />} />
           <Route path="/telaprincipal" element={<Telaprincipal />} />
           <Route path="/noah" element={<Telanoah />} />
+          <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
+          <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
           <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} />} />
         </Routes>
       </div>

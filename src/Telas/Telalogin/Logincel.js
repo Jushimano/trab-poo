@@ -8,7 +8,14 @@ function Logincel() {
     const [accountType, setAccountType] = useState('cliente');
 
     const handleLogin = () => {
-        navigate('/telaprincipal');
+
+        if(accountType === 'cliente'){
+            navigate('/telaprincipal');
+        } else if(accountType === 'Agente Imobiliário'){
+            navigate('/telaprincipalAg');
+        } else{
+            navigate('/telaprincipalImob');
+        }
     };
 
 

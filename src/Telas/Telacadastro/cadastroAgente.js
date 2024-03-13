@@ -6,7 +6,7 @@ function CadastroAgente() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate('/telaprincipal');
+        navigate('/telaprincipalAg');
     };
     return (
         <div className="container">

@@ -1,0 +1,124 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  /* Impede a rolagem da página inteira */
+}
+
+.container {
+  width: 100%;
+  max-width: 350px;
+  /* Largura máxima do iPhone 12 */
+  height: 844px;
+  /* Altura do iPhone 12 */
+  margin: 0 auto;
+  /* Centraliza horizontalmente */
+  display: flex;
+  flex-direction: column;
+  /* Ajusta a direção do layout para vertical */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #F6F3EC;
+  overflow-x: hidden;
+}
+
+.texto_encontre {
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  position: relative;
+  top: -260px;
+  left: -60px;
+}
+
+.notificacao {
+  width: 20px;
+  position: relative;
+  top: -320px;
+  right: -130px;
+}
+
+.pesquisa {
+  border-radius: 12px;
+  padding: 12px 45px;
+  font-size: 13px;
+  background-color: #F6F3EC;
+  border: 0.1px solid #000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 110px;
+}
+
+.button-container {
+  display: flex;
+  gap: 15px;
+  position: relative;
+  margin-top: -290px;
+  /* Aumenta o espaço entre o topo do contêiner e os botões */
+  margin-bottom: 50px;
+}
+
+.button-container::-webkit-scrollbar {
+  display: none;
+  /* Esconde a barra de rolagem */
+}
+
+.button-container button {
+  border-radius: 25px;
+  padding: 5px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #F6F3EC;
+  color: #000000;
+  border: 1px solid #000000;
+  /* Adiciona uma borda preta */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.button-container button.active {
+  border-radius: 25px;
+  padding: 5px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #9D6F4D;
+  color: #F6F3EC;
+  border: none;
+  /* Adiciona uma borda preta */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.noah {
+  width: 300px;
+}
+
+.pop {
+  font-size: 17px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  position: relative;
+  top: -210px;
+  left: -110px;
+}
+
+.home {
+  width: 300px;
+  position: relative;
+  top: 60px;
+
+}
+
+.consultoria {
+  border-radius: 25px;
+  padding: 10px 35px;
+  font-size: 10px;
+  cursor: pointer;
+  background-color: #967860;
+  color: #F6F3EC;
+  border: none;
+  position: relative;
+  bottom: -30px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}

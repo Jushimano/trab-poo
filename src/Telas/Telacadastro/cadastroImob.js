@@ -6,7 +6,7 @@ function CadastroImob() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate('/telaprincipal');
+        navigate('/telaprincipalImob');
     };
     return (
         <div className="container">
