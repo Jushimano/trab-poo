@@ -1,13 +1,18 @@
 import React from "react";
 import './formulario.css';
 
-function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar, remover, alterar }) {
+function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar, remover, alterar, agentes}) {
     return (
         <div className="container1">
             <text className="titulo_con">CONSULTORIAS</text>
             <form>
                 {/*<input type='text' value={obj.nome} onChange={eventoTeclado} name='nome' placeholder='Seu nome' className="texto_info " />*/}
-                <input type='text' value={obj.agente} onChange={eventoTeclado} name='agente' placeholder='Nome agente' className="texto_info " />
+                <select value={obj.agente} onChange={eventoTeclado} name='agente' className="texto_info">
+                    <option value="">Selecione o agente</option>
+                    {agentes.map((agente, index) => (
+                        <option key={index} value={agente}>{agente}</option>
+                    ))}
+                </select>
                 <input type='date' value={obj.data} onChange={eventoTeclado} name='data' placeholder='Data' className="texto_info " />
                 <input type='time' value={obj.horario} onChange={eventoTeclado} name='horario' placeholder='Horario' className="texto_info " />
 

@@ -63,6 +63,13 @@ function App() {
       .then(retorno_convertido => setConsultoria(retorno_convertido));
   }, []);
 
+  //UseEffect para pegar a lista dos agente cadastrados
+  useEffect(() => {
+    fetch("http://localhost:8080/listarAgentes") // Rota do backend para listar os agentes cadastrados
+      .then(retorno => retorno.json())
+      .then(agentes => setAgente(agentes));
+  }, []);
+
   //cadastrar cliente
   const cadastrarCliente = () => {
     fetch('http://localhost:8080/cliente/cadastrar', {
@@ -264,7 +271,7 @@ function App() {
           <Route path="/noah" element={<Telanoah />} />
           <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
           <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
-          <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} />} />
+          <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={agentes} />} />
           <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} />} />
         </Routes>
       </div>
