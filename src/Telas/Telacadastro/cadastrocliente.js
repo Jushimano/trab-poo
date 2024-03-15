@@ -6,7 +6,7 @@ function Cadastrocliente({ eventoTeclado, cadastrarCliente, obj }) { // Use a si
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate('/telaprincipal');
+        navigate('/logincel');
     };
 
     return (

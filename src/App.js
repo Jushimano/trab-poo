@@ -20,10 +20,10 @@ function App() {
   //objeto consultoria
   const consultoria = {
     codigo: 0,
-    nome: '',
-    agente: '',
     data: '', //será que é null?
     horario: '',
+    creci: '',
+    cpf: '',
   }
 
   //objeto cliente
@@ -60,6 +60,9 @@ function App() {
   // Cria outro só para listagem de agentes da tela de consultoria?
   const [listaagentes, setListaAgente] = useState([]);
 
+  // Cria outro só para listagem de agentes da tela de consultoria?
+  const [listaclientes, setListaClientes] = useState([]);
+
   //UseEffect
   useEffect(() => {
     fetch("http://localhost:8080/listar") //colocar aqui a url da aplicação backend que retorna a lista
@@ -72,6 +75,13 @@ function App() {
     fetch("http://localhost:8080/listarAgentes") // Rota do backend para listar os agentes cadastrados
       .then(retorno => retorno.json())
       .then(listaagentes => setListaAgente(listaagentes));
+  }, []);
+
+  //UseEffect para pegar a lista dos clientes cadastrados
+  useEffect(() => {
+    fetch("http://localhost:8080/listarClientes") // Rota do backend para listar os agentes cadastrados
+      .then(retorno => retorno.json())
+      .then(listaclientes => setListaClientes(listaclientes));
   }, []);
 
   //cadastrar cliente
@@ -277,7 +287,7 @@ function App() {
             <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
             <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
             <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
-            <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} />} />
+            <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} clientes={listaclientes} />} />
           </Routes>
         </div>
       </Router>

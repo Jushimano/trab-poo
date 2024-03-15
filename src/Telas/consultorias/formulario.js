@@ -1,12 +1,18 @@
 import React from "react";
+import { useAuth } from '/home/julia/POO/imobilearea_poo/src/authcontext'; // Importe o hook useAuth
 import './formulario.css';
 
 function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar, remover, alterar, agentes }) {
+    const { user } = useAuth(); // Use o hook useAuth para obter o usuário ativo
+
+    // Verifica se o usuário está autenticado e se possui CPF
+    const cpfUsuarioAtivo = user && user.cpf ? user.cpf : '';
+
     return (
         <div className="container1">
             <text className="titulo_con">CONSULTORIAS</text>
             <form>
-                <input type='text' value={obj.nome} onChange={eventoTeclado} name='nome' placeholder='Seu nome' className="texto_info " />
+                <input type='text' value={cpfUsuarioAtivo || 'Seu CPF'} readOnly name='cpf' className="texto_info" />
                 <select value={obj.agente} onChange={eventoTeclado} name='agente' className="texto_info">
                     <option value="">Selecione o agente</option>
                     {agentes.map((agente, index) => (
@@ -14,8 +20,8 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
                     ))}
                 </select>
 
-                <input type='date' value={obj.data} onChange={eventoTeclado} name='data' placeholder='Data' className="texto_info " />
-                <input type='time' value={obj.horario} onChange={eventoTeclado} name='horario' placeholder='Horario' className="texto_info " />
+                <input type='date' value={obj.data} onChange={eventoTeclado} name='data' placeholder='Data' className="texto_info" />
+                <input type='time' value={obj.horario} onChange={eventoTeclado} name='horario' placeholder='Horario' className="texto_info" />
 
                 <div className="button-wrapper">
                     <input type='button' value='Cadastrar' onClick={cadastrar} className="botao_con" />
@@ -35,16 +41,23 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
                 <tbody>
                     {
                         vetor.map((obj, indice) => (
-                            <tr key={indice}>
-                                <td className="coluna1">{indice + 1}</td>
-                                <td className="coluna2">{obj.nome}</td>
-                                <td className="coluna3">
-                                    <button onClick={() => { selecionar(indice) }} className='botao_selecionar'>Selecionar</button>
-                                </td>
-                            </tr>
+                            // Verifica se o CPF do cliente ativo é igual ao CPF associado à consultoria
+                            (obj.cpfCliente === cpfUsuarioAtivo) && (
+                                <tr key={indice}>
+                                    <td className="coluna1">{indice + 1}</td>
+                                    <td className="coluna2">
+                                        {
+                                            // Encontra o agente correspondente no array 'agentes' usando o CRECI
+                                            agentes.find(agente => agente.creci === obj.creci)?.nome || 'Agente não encontrado'
+                                        }
+                                    </td>
+                                    <td className="coluna3">
+                                        <button onClick={() => { selecionar(indice) }} className='botao_selecionar'>Selecionar</button>
+                                    </td>
+                                </tr>
+                            )
                         ))
                     }
-
                 </tbody>
             </table>
         </div>
@@ -52,4 +65,3 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
 }
 
 export default Formulario;
-

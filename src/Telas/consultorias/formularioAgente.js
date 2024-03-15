@@ -1,12 +1,16 @@
 import React from "react";
+import { useAuth } from '/home/julia/POO/imobilearea_poo/src/authcontext';
 import './formularioAgente.css';
 
-function Formulario({ vetor, eventoTeclado, obj, selecionar, cancelar, remover}) {
+function Formulario({ vetor, eventoTeclado, obj, selecionar, cancelar, remover, clientes }) {
+    const { user } = useAuth();
+    const creciUsuarioAtivo = user && user.creci ? user.creci : '';
+    const nomeCliente = clientes.find(cliente => cliente.cpf === obj.cpf)?.nome || 'Nome cliente';
     return (
         <div className="container1">
             <text className="titulo_con">CONSULTORIAS</text>
             <form>
-                <input type='text' value={obj.nome} readOnly placeholder='Nome cliente' className="texto_info" />
+                <input type='text' value={nomeCliente} readOnly placeholder='Nome cliente' className="texto_info" />
                 <input type='date' value={obj.data} onChange={eventoTeclado} name='data' placeholder='Data' className="texto_info " />
                 <input type='time' value={obj.horario} onChange={eventoTeclado} name='horario' placeholder='Horario' className="texto_info " />
 
@@ -26,16 +30,20 @@ function Formulario({ vetor, eventoTeclado, obj, selecionar, cancelar, remover})
                 <tbody>
                     {
                         vetor.map((obj, indice) => (
-                            <tr key={indice}>
-                                <td className="coluna1">{indice + 1}</td>
-                                <td className="coluna2">{obj.nome}</td>
-                                <td className="coluna3">
-                                    <button onClick={() => { selecionar(indice) }} className='botao_selecionar'>Selecionar</button>
-                                </td>
-                            </tr>
+                            // Adicione esta verificação para filtrar apenas as consultorias com o mesmo CRECI do cliente ativo
+                            (obj.creci === creciUsuarioAtivo) && (
+                                <tr key={indice}>
+                                    <td className="coluna1">{indice + 1}</td>
+                                    <td className="coluna2">{
+                                        clientes.find(cliente => cliente.cpf)?.nome||'cliente não encontrado'
+                                    }</td>
+                                    <td className="coluna3">
+                                        <button onClick={() => { selecionar(indice) }} className='botao_selecionar'>Selecionar</button>
+                                    </td>
+                                </tr>
+                            )
                         ))
                     }
-
                 </tbody>
             </table>
         </div>

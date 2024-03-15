@@ -6,7 +6,7 @@ function CadastroAgente({ eventoTeclado, cadastrarAgente, obj }) {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate('/telaprincipalAg');
+        navigate('/logincel');
     };
     return (
         <div className="container">
