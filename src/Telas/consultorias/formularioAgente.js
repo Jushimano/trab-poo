@@ -19,7 +19,7 @@ function Formulario({ vetor, eventoTeclado, obj, selecionar, cancelar, remover})
                 <thead>
                     <tr>
                         <th className="coluna1">#</th>
-                        <th className="coluna2" >Nome agente</th>
+                        <th className="coluna2" >Nome cliente</th>
                         <th className="coluna3">Selecionar</th>
                     </tr>
                 </thead>

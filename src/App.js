@@ -13,6 +13,7 @@ import Telaconsultoria from './Telas/consultorias/formulario'
 import TelaprincipalAg from './Telas/Telaprincipal/TelaprincipalAg'
 import TelaprincipalImob from './Telas/Telaprincipal/TelaprincipalImob'
 import TelaconsultoriaAg from './Telas/consultorias/formularioAgente'
+import { AuthProvider } from './authcontext'
 
 function App() {
 
@@ -56,6 +57,9 @@ function App() {
   const [agentes, setAgente] = useState([]);
   const [objAgente, setObjAgente] = useState(agente);
 
+  // Cria outro só para listagem de agentes da tela de consultoria?
+  const [listaagentes, setListaAgente] = useState([]);
+
   //UseEffect
   useEffect(() => {
     fetch("http://localhost:8080/listar") //colocar aqui a url da aplicação backend que retorna a lista
@@ -67,7 +71,7 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:8080/listarAgentes") // Rota do backend para listar os agentes cadastrados
       .then(retorno => retorno.json())
-      .then(agentes => setAgente(agentes));
+      .then(listaagentes => setListaAgente(listaagentes));
   }, []);
 
   //cadastrar cliente
@@ -135,7 +139,7 @@ function App() {
     setObjAgente({ ...objAgente, [e.target.name]: e.target.value });
   }
 
-  //cadastrar produto
+  //cadastrar consultoria
   const cadastrar = () => {
     fetch('http://localhost:8080/cadastrar', {
       method: 'post',
@@ -257,25 +261,27 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Telalogin />} />
-          <Route path="/cadastro" element={<Telacadastro />} />
-          <Route path="/cadastrocliente" element={<CadastroCliente eventoTeclado={aoDigitar1} cadastrarCliente={cadastrarCliente} obj={objCliente} />} />
-          <Route path="/cadastroImob" element={<CadastroImob />} />
-          <Route path="/cadastroAgente" element={<CadastroAgente eventoTeclado={aoDigitar2} cadastrarAgente={cadastrarAgente} obj={objAgente}/>} />
-          <Route path="/login" element={<Telalogin />} />
-          <Route path="/logincel" element={<Logincel />} />
-          <Route path="/telaprincipal" element={<Telaprincipal />} />
-          <Route path="/noah" element={<Telanoah />} />
-          <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
-          <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
-          <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={agentes} />} />
-          <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} />} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Telalogin />} />
+            <Route path="/cadastro" element={<Telacadastro />} />
+            <Route path="/cadastrocliente" element={<CadastroCliente eventoTeclado={aoDigitar1} cadastrarCliente={cadastrarCliente} obj={objCliente} />} />
+            <Route path="/cadastroImob" element={<CadastroImob />} />
+            <Route path="/cadastroAgente" element={<CadastroAgente eventoTeclado={aoDigitar2} cadastrarAgente={cadastrarAgente} obj={objAgente} />} />
+            <Route path="/login" element={<Telalogin />} />
+            <Route path="/logincel" element={<Logincel />} />
+            <Route path="/telaprincipal" element={<Telaprincipal />} />
+            <Route path="/noah" element={<Telanoah />} />
+            <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
+            <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
+            <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
+            <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
