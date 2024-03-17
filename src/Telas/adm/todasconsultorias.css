@@ -1,0 +1,131 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /*overflow: hidden;*/
+    /* Impede a rolagem da página inteira */
+    /*background-color: #F6F3EC;*/
+}
+
+.container1 {
+    width: 100%;
+    max-width: 350px;
+    /* Largura máxima do iPhone 12 */
+    height: 610px;
+    /* Define uma altura mínima igual à altura da janela de visualização */
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
+    display: flex;
+    flex-direction: column;
+    /* Ajusta a direção do layout para vertical */
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    background-color: #F6F3EC;
+    border-top: 2px solid #F6F3EC;
+    /* Adiciona uma borda superior */
+    padding-top: 20px;
+    /* Espaçamento acima do conteúdo */
+    overflow-y: auto;
+    /* Permite que a barra de rolagem vertical seja controlada automaticamente */
+    /*border: 1px solid #967860;*/
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    /* Espaçamento entre o formulário e os botões */
+}
+
+.texto_info1 {
+    width: 100%;
+    margin-bottom: 10px;
+    /* Espaçamento entre os inputs de texto */
+    border-radius: 10px;
+    padding: 10px 25px;
+    text-align: center;
+    background-color: #F6F3EC;
+    border: 0.1px solid #000;
+    align-self: center;
+    text-align: center;
+}
+
+input[type='text']::placeholder {
+    text-align: center;
+}
+
+.botao_con1 {
+    margin-right: 5px;
+    /* Espaçamento entre os botões */
+    background-color: #967860;
+    color: #F6F3EC;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 7px 10px;
+    cursor: pointer;
+    text-align: center;
+    /* Alinha o texto dentro do botão */
+    align-self: center;
+}
+
+
+.titulo_con1 {
+    margin-bottom: 20px;
+    /* Adiciona espaço abaixo do título */
+}
+
+.tabela_con {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #967860;
+    table-layout: fixed;
+    /* Adiciona essa linha */
+}
+
+.tabela_con th,
+.tabela_con td {
+    padding: 10px;
+    border-bottom: 1px solid #967860;
+    border-right: 1px solid #967860;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.tabela_con .coluna1 {
+    width: 2px;
+    /* Define um tamanho fixo para a coluna 1 */
+}
+
+.tabela_con .coluna2 {
+    width: 120px;
+    /* Define um tamanho fixo para a coluna 2 */
+}
+
+.tabela_con .coluna3 {
+    width: 52px;
+    /* Define um tamanho fixo para a coluna 3 */
+}
+
+.tabela_con th {
+    text-align: left;
+}
+
+.botao_selecionar {
+    background-color: #967860;
+    color: #F6F3EC;
+    border-radius: 15px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 5px 8px;
+    cursor: pointer;
+    text-align: center;
+}

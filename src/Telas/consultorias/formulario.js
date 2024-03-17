@@ -7,13 +7,14 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
 
     // Verifica se o usuário está autenticado e se possui CPF
     const cpfUsuarioAtivo = user && user.cpf ? user.cpf : '';
+    obj.cpf = cpfUsuarioAtivo;
 
     return (
         <div className="container1">
             <text className="titulo_con">CONSULTORIAS</text>
             <form>
-                <input type='text' value={cpfUsuarioAtivo || 'Seu CPF'} readOnly name='cpf' className="texto_info" />
-                <select value={obj.agente} onChange={eventoTeclado} name='agente' className="texto_info">
+                <input type='text' value={obj.cpf || 'Seu CPF'} readOnly name='cpf' className="texto_info" />
+                <select value={obj.creci} onChange={eventoTeclado} name='creci' className="texto_info">
                     <option value="">Selecione o agente</option>
                     {agentes.map((agente, index) => (
                         <option key={index} value={agente.creci}>{agente.nome}</option>
@@ -21,7 +22,7 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
                 </select>
 
                 <input type='date' value={obj.data} onChange={eventoTeclado} name='data' placeholder='Data' className="texto_info" />
-                <input type='time' value={obj.horario} onChange={eventoTeclado} name='horario' placeholder='Horario' className="texto_info" />
+                <input type='time' value={obj.hora} onChange={eventoTeclado} name='horario' placeholder='Horario' className="texto_info" />
 
                 <div className="button-wrapper">
                     <input type='button' value='Cadastrar' onClick={cadastrar} className="botao_con" />

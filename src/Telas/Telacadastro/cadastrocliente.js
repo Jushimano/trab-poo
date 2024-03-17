@@ -20,7 +20,7 @@ function Cadastrocliente({ eventoTeclado, cadastrarCliente, obj }) { // Use a si
                 </label>
                 <label className="celular">
                     Número de celular (DDD)xxxxxxxx:<br></br>
-                    <input type="text" value={obj.celular} onChange={eventoTeclado} name='celular' className="box_celular" /><br></br>
+                    <input type="text" value={obj.telefone} onChange={eventoTeclado} name='telefone' className="box_celular" /><br></br>
                 </label>
                 <label className="email">
                     E-mail:<br></br>

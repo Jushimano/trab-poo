@@ -21,21 +21,19 @@ function Logincel() {
                 },
                 body: JSON.stringify({ info, password, accountType }), // Adiciona o accountType
             });
-    
+
             const data = await response.json();
-    
+
             // Verificar se as credenciais foram autenticadas com sucesso
             if (response.ok) {
                 // Credenciais válidas, chamar a função de login do contexto de autenticação
                 login(data); // Passa os dados do usuário autenticado para o contexto de autenticação
-    
+
                 // Redirecionar para a página apropriada com base no tipo de conta
                 if (data.accountType === 'cliente') {
                     navigate('/telaprincipal');
-                } else if (data.accountType === 'imobiliaria') {
-                    navigate('/telaprincipalImob');
-                } else if (data.accountType === 'agente') {
-                    navigate('/telaprincipalAg');
+                } else if (data.accountType === 'adm') {
+                    navigate('/telaprincipaladm');
                 }
             } else {
                 // Credenciais inválidas, exibir uma mensagem de erro
@@ -45,7 +43,7 @@ function Logincel() {
             console.error('Erro ao fazer login:', error);
             alert('Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.');
         }
-    };    
+    };
 
     return (
         <div className='container'>
@@ -57,8 +55,7 @@ function Logincel() {
             <p className="conta">Conta:</p>
             <select value={accountType} onChange={(e) => setAccountType(e.target.value)} className="opcao">
                 <option value="cliente">Cliente</option>
-                <option value="agente">Agente Imobiliário</option>
-                <option value="imobiliaria">Imobiliária</option>
+                <option value="adm">Administrador</option>
             </select><br></br>
             <button onClick={handleLogin} type="button" className="botao_login">Login</button>
             <p className="text">Não possui uma conta? <Link to="/cadastro" className="cadastro">Cadastre-se</Link></p>

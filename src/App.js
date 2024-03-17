@@ -13,15 +13,18 @@ import Telaconsultoria from './Telas/consultorias/formulario'
 import TelaprincipalAg from './Telas/Telaprincipal/TelaprincipalAg'
 import TelaprincipalImob from './Telas/Telaprincipal/TelaprincipalImob'
 import TelaconsultoriaAg from './Telas/consultorias/formularioAgente'
+import Telaprincipaladm from './Telas/Telaprincipal/Telaprincipaladm'
+import Telatodosclientes from './Telas/adm/todosclientes'
+import Telatodasconsultorias from './Telas/adm/todasconsultorias'
 import { AuthProvider } from './authcontext'
 
 function App() {
 
   //objeto consultoria
   const consultoria = {
-    codigo: 0,
-    data: '', //será que é null?
-    horario: '',
+    id: 0,
+    data: '',
+    hora: '',
     creci: '',
     cpf: '',
   }
@@ -29,7 +32,7 @@ function App() {
   //objeto cliente
   const cliente = {
     nome: '',
-    celular: '',
+    telefone: '',
     email: '',
     cpf: '',
     senha: '',
@@ -65,7 +68,7 @@ function App() {
 
   //UseEffect
   useEffect(() => {
-    fetch("http://localhost:8080/listar") //colocar aqui a url da aplicação backend que retorna a lista
+    fetch("http://localhost:8080/consultoria/todos") //colocar aqui a url da aplicação backend que retorna a lista
       .then(retorno => retorno.json())
       .then(retorno_convertido => setConsultoria(retorno_convertido));
   }, []);
@@ -79,14 +82,14 @@ function App() {
 
   //UseEffect para pegar a lista dos clientes cadastrados
   useEffect(() => {
-    fetch("http://localhost:8080/listarClientes") // Rota do backend para listar os agentes cadastrados
+    fetch("http://localhost:8080/cliente/todos") // Rota do backend para listar os agentes cadastrados
       .then(retorno => retorno.json())
       .then(listaclientes => setListaClientes(listaclientes));
   }, []);
 
   //cadastrar cliente
   const cadastrarCliente = () => {
-    fetch('http://localhost:8080/cliente/cadastrar', {
+    fetch('http://localhost:8080/cliente', {
       method: 'post',
       body: JSON.stringify(objCliente),
       headers: {
@@ -99,9 +102,11 @@ function App() {
 
         //colocar no back mensagens de erro! Conforme o video
         if (retorno_convertido.mensagem !== undefined) {
-          alert(retorno_convertido.mesagem);
+          console.log("1");
+          alert(retorno_convertido.mensagem);
         } else {
           setCliente([...clientes, retorno_convertido]);
+          console.log("2");
           alert('Cliente cadastrado com sucesso!');
           limparFormularioCliente();
         }
@@ -151,7 +156,7 @@ function App() {
 
   //cadastrar consultoria
   const cadastrar = () => {
-    fetch('http://localhost:8080/cadastrar', {
+    fetch('http://localhost:8080/consultoria', {
       method: 'post',
       body: JSON.stringify(objConsultoria),
       headers: {
@@ -176,8 +181,8 @@ function App() {
 
   //Alterar produto
   const alterar = () => {
-    fetch('http://localhost:8080/alterar', {
-      method: 'put',
+    fetch('http://localhost:8080/consultoria/' + objConsultoria.codigo, {
+      method: 'patch',
       body: JSON.stringify(objConsultoria),
       headers: {
         'Content-type': 'application/json',
@@ -217,7 +222,7 @@ function App() {
 
   //remover produto
   const remover = () => {
-    fetch('http://localhost:8080/remover' + objConsultoria.codigo, {
+    fetch('http://localhost:8080/consultoria/' + objConsultoria.codigo, {
       method: 'delete',
       headers: {
         'Content-type': 'application/json',
@@ -270,6 +275,11 @@ function App() {
     setObjConsultoria(consultorias[indice]);
   }
 
+  //selecionar consultoria
+  const selecionarCliente = (indice) => {
+    setObjConsultoria(clientes[indice]);
+  }
+
   return (
     <AuthProvider>
       <Router>
@@ -286,8 +296,11 @@ function App() {
             <Route path="/noah" element={<Telanoah />} />
             <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
             <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
+            <Route path="/telaprincipaladm" element={<Telaprincipaladm />} />
             <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
             <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} clientes={listaclientes} />} />
+            <Route path="/todosclientes" element={<Telatodosclientes clientes={listaclientes} obj={objCliente} selecionar={selecionarCliente} cancelar={limparFormularioCliente}/>} />
+            <Route path="/todasconsultorias" element={<Telatodasconsultorias vetor={consultorias} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} agentes={listaagentes} clientes={listaclientes}/>} />
           </Routes>
         </div>
       </Router>
