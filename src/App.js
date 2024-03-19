@@ -26,7 +26,7 @@ function App() {
         data: '',
         hora: '',
         creciAgente: '',
-        cpf: '',
+        cpfCliente: '',
     }
 
     //objeto cliente
@@ -325,6 +325,11 @@ function App() {
         setObjConsultoria(listaConsultorias[indice]);
     }
 
+    //selecionar consultoria
+    const selecionarConsultoria1 = (indice) => {
+        setObjConsultoria(consultorias[indice]);
+    }
+
     //selecionar cliente
     const selecionarCliente = (indice) => {
         setObjCliente(listaClientes[indice]);
@@ -347,7 +352,7 @@ function App() {
                         <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
                         <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
                         <Route path="/telaprincipaladm" element={<Telaprincipaladm />} />
-                        <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
+                        <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria1} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
                         <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} clientes={listaClientes} />} />
                         <Route path="/todosclientes" element={<Telatodosclientes clientes={listaClientes} obj={objCliente} selecionar={selecionarCliente} cancelar={limparFormularioCliente} />} />
                         <Route path="/todasconsultorias" element={<Telatodasconsultorias vetor={listaConsultorias} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} agentes={listaagentes} clientes={listaClientes} />} />

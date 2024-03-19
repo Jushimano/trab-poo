@@ -82,7 +82,7 @@ input[type='text']::placeholder {
 .tabela_con {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: -5px;
     border: 2px solid #967860;
     table-layout: fixed;
     /* Adiciona essa linha */
@@ -128,4 +128,13 @@ input[type='text']::placeholder {
     padding: 5px 8px;
     cursor: pointer;
     text-align: center;
+}
+
+.voltar4{
+    width: 20px; /* Definir a largura da imagem */
+    height: 20px; /* Definir a altura da imagem */
+    position:relative;
+    top:-265px;
+    right:40px;
+    cursor:pointer;
 }

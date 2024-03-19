@@ -89,3 +89,11 @@ html, body {
     left: 30px;
 }
 
+.voltar1{
+    width: 20px; /* Definir a largura da imagem */
+    height: 20px; /* Definir a altura da imagem */
+    position:relative;
+    bottom: 400px;
+    right:140px;
+    cursor:pointer;
+}

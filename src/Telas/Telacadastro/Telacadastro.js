@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Telacadastro.css';
+import Voltar from '../arrow-back-outline.png';
 
 function Telacadastro() {
     const [accountType, setAccountType] = useState('');
@@ -21,6 +22,9 @@ function Telacadastro() {
         }
     };
     
+    const handleVolteClick = () => {
+        navigate('/login');
+    };
 
     return (
         <div className="container">
@@ -41,6 +45,7 @@ function Telacadastro() {
             </label>
             <button onClick={handleContinueClick} className = "botao_continue">Continue</button>
             <p className="text">Já possui uma conta? <Link to="/login" className="login">Login</Link></p>
+            <img src={Voltar} onClick = {handleVolteClick} className = "voltar1"alt="Descrição da imagem" />
         </div>
     );
 }

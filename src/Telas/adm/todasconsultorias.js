@@ -1,7 +1,10 @@
 import React from "react";
 import './todasconsultorias.css';
+import { useNavigate } from 'react-router-dom'
+import Voltar from '../arrow-back-outline.png';
 
-function todasconsultorias({ vetor, obj, selecionar, cancelar, agentes, clientes }) {
+function Todasconsultorias({ vetor, obj, selecionar, cancelar, agentes, clientes }) {
+    const navigate = useNavigate();
 
     // Função para encontrar o nome do cliente pelo CPF
     const encontrarNomeCliente = (cpf) => {
@@ -15,6 +18,10 @@ function todasconsultorias({ vetor, obj, selecionar, cancelar, agentes, clientes
         return agente ? agente.nome : 'Agente não encontrado';
     };
 
+    const handleVolteClick = () => {
+        navigate('/telaprincipaladm');
+    };
+
     return (
         <div className="container1">
             <text className="titulo_con">CONSULTORIAS</text>
@@ -24,6 +31,8 @@ function todasconsultorias({ vetor, obj, selecionar, cancelar, agentes, clientes
                 <input type='date' value={obj.data } readOnly name='data' placeholder='Data' className="texto_info1" style={{ textAlign: 'center' }}/>
                 <input type='time' value={obj.hora} readOnly name='hora' placeholder='Horario' className="texto_info1" />
                 <input type='button' value='Cancelar' onClick={cancelar} className="botao_con1" />
+
+                <img src={Voltar} onClick = {handleVolteClick} className = "voltar4"alt="Descrição da imagem" />
      
             </form>
             <table className="tabela_con">
@@ -55,4 +64,4 @@ function todasconsultorias({ vetor, obj, selecionar, cancelar, agentes, clientes
     )
 }
 
-export default todasconsultorias;
+export default Todasconsultorias;

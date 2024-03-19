@@ -1,19 +1,26 @@
 import React from "react";
 import { useAuth } from '../../authcontext'; // Importe o hook useAuth
+import { useNavigate } from 'react-router-dom';
 import './formulario.css';
+import Voltar from '../arrow-back-outline.png';
 
 function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar, remover, alterar, agentes }) {
     const { user } = useAuth(); // Use o hook useAuth para obter o usuário ativo
 
     // Verifica se o usuário está autenticado e se possui CPF
-    const cpfUsuarioAtivo = user && user.cpf ? user.cpf : '';
-    obj.cpf = cpfUsuarioAtivo;
+    const cpfUsuarioAtivo = user && user.cpfCliente ? user.cpfCliente : '';
+    obj.cpfCliente = cpfUsuarioAtivo;
+
+    const navigate = useNavigate();
+
+    const handleVolteClick = () => {
+        navigate('/telaprincipal');
+    };
 
     return (
         <div className="container1">
             <text className="titulo_con">CONSULTORIAS</text>
             <form>
-                <input type='text' value={obj.cpf || 'Seu CPF'} readOnly name='cpf' className="texto_info" />
                 <select value={obj.creciAgente} onChange={eventoTeclado} name='creciAgente' className="texto_info">
                     <option value="">Selecione o agente</option>
                     {agentes.map((agente, index) => (
@@ -23,6 +30,7 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
 
                 <input type='date' value={obj.data} onChange={eventoTeclado} name='data' placeholder='Data' className="texto_info" />
                 <input type='text' value={obj.hora} onChange={eventoTeclado} name='hora' placeholder='Horario' className="texto_info" />
+                <img src={Voltar} onClick = {handleVolteClick} className = "voltar3"alt="Descrição da imagem" />
 
                 <div className="button-wrapper">
                     <input type='button' value='Cadastrar' onClick={cadastrar} className="botao_con" />

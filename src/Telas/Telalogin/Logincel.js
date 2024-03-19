@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../authcontext'; // Importe o hook useAuth
 import './Logincel.css';
+import Voltar from '../arrow-back-outline.png'
 
 function Logincel() {
     const navigate = useNavigate();
@@ -45,10 +46,14 @@ function Logincel() {
         }
     };
 
+    const handleVolteClick = () => {
+        navigate('/login');
+    };
+
     return (
         <div className='container'>
             <p className="texto_login">Login com número<br></br> de celular/telefone</p>
-            <p className="texto_add">Por favor, adicione corretamente o seu<br></br>CPF ou CNPJ ou CRECI:</p>
+            <p className="texto_add">Por favor, adicione corretamente o seu número<br></br>de telefone:</p>
             <input type="text" className="box_cel" value={telefone} onChange={(e) => setTelefone(e.target.value)} /><br></br>
             <p className="texto_senha">Digite sua senha:<br></br></p>
             <input type="password" className="box_senha1" value={senha} onChange={(e) => setSenha(e.target.value)} /><br></br>
@@ -59,6 +64,7 @@ function Logincel() {
             </select><br></br>
             <button onClick={handleLogin} type="button" className="botao_login">Login</button>
             <p className="text">Não possui uma conta? <Link to="/cadastro" className="cadastro">Cadastre-se</Link></p>
+            <img src={Voltar} onClick = {handleVolteClick} className = "voltar"alt="Descrição da imagem" />
         </div>
     )
 }

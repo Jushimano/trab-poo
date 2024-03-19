@@ -128,3 +128,11 @@ input[type='text']::placeholder {
     cursor: pointer;
     text-align: center;
 }
+
+.voltar3{
+    width: 20px; /* Definir a largura da imagem */
+    height: 20px; /* Definir a altura da imagem */
+    position:relative;
+    top:-185px;
+    cursor:pointer;
+}

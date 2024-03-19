@@ -103,6 +103,15 @@ body {
 .conta{
     font-size: 14px;
     position: absolute;
-    top: 360px;
+    top: 350px;
     left: 80px;
+}
+
+.voltar{
+    width: 20px; /* Definir a largura da imagem */
+    height: 20px; /* Definir a altura da imagem */
+    position:relative;
+    bottom: 460px;
+    right:140px;
+    cursor:pointer;
 }

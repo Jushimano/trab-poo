@@ -1,12 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './cadastrocliente.css';
+import Voltar from '../arrow-back-outline.png'
 
 function Cadastrocliente({ eventoTeclado, cadastrarCliente, obj }) { // Use a sintaxe de desestruturação para receber as propriedades
     const navigate = useNavigate();
 
     const handleLogin = () => {
         navigate('/logincel');
+    };
+
+    const handleVolteClick = () => {
+        navigate('/cadastro');
     };
 
     return (
@@ -35,6 +40,7 @@ function Cadastrocliente({ eventoTeclado, cadastrarCliente, obj }) { // Use a si
                     <input type="password" value={obj.senha} onChange={eventoTeclado} name='senha' className="box_senha" /><br></br>
                 </label>
                 <button onClick={() => { handleLogin(); cadastrarCliente(); }} type="button" className="botao_signUp">Sign Up</button>
+                <img src={Voltar} onClick = {handleVolteClick} className = "voltar2"alt="Descrição da imagem" />
             </form>
         </div>
     );

@@ -1,7 +1,15 @@
 import React from "react";
 import './todosclientes.css';
+import { useNavigate } from 'react-router-dom';
+import Voltar from '../arrow-back-outline.png';
 
-function todosclientes({ clientes, obj, selecionar, cancelar }) {
+function Todosclientes({ clientes, obj, selecionar, cancelar }) {
+
+    const navigate = useNavigate();
+
+    const handleVolteClick = () => {
+        navigate('/telaprincipaladm');
+    };
 
     return (
         <div className="container1">
@@ -14,6 +22,8 @@ function todosclientes({ clientes, obj, selecionar, cancelar }) {
                 
                 
                 <input type='button' value='Cancelar' onClick={cancelar} className="botao_con1" />
+
+                <img src={Voltar} onClick = {handleVolteClick} className = "voltar5"alt="Descrição da imagem" />
      
             </form>
             <table className="tabela_con">
@@ -43,4 +53,4 @@ function todosclientes({ clientes, obj, selecionar, cancelar }) {
     )
 }
 
-export default todosclientes;
+export default Todosclientes;
