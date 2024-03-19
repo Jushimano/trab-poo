@@ -25,7 +25,7 @@ body {
   overflow-x: hidden;
 }
 
-.texto_encontre {
+.texto_encontre1 {
   font-size: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
@@ -34,7 +34,7 @@ body {
   left: -60px;
 }
 
-.notificacao {
+.notificacao1 {
   width: 20px;
   position: relative;
   top: -320px;
@@ -103,14 +103,14 @@ body {
   left: -110px;
 }
 
-.home {
+.home1 {
   width: 300px;
   position: relative;
   top: 60px;
 
 }
 
-.consultoria {
+.consultoria1 {
   border-radius: 25px;
   padding: 10px 35px;
   font-size: 10px;
@@ -119,6 +119,20 @@ body {
   color: #F6F3EC;
   border: none;
   position: relative;
-  bottom: -30px;
+  bottom: -20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.sair1{
+  border-radius: 25px;
+  padding: 10px 35px;
+  font-size: 10px;
+  cursor: pointer;
+  background-color: #967860;
+  color: #F6F3EC;
+  border: none;
+  position: relative;
+  left: 120px;
+  bottom: 520px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
