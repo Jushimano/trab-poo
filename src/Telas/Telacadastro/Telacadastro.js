@@ -15,10 +15,6 @@ function Telacadastro() {
     const handleContinueClick = () => {
         if (accountType === 'Cliente') {
             navigate('/cadastrocliente');
-        } else if (accountType === 'Imobiliária') {
-            navigate('/cadastroImob');
-        } else if (accountType === 'Agente Imobiliário') {
-            navigate('/cadastroAgente');
         }
     };
     

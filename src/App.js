@@ -38,16 +38,6 @@ function App() {
         senha: '',
     };
 
-    //objeto agente
-    const agente = {
-        nome: '',
-        celular: '',
-        email: '',
-        creci: '',
-        senha: '',
-    };
-
-
     //useState
     const [consultorias, setConsultoria] = useState([]);
     const [objConsultoria, setObjConsultoria] = useState(consultoria);
@@ -55,10 +45,6 @@ function App() {
     // Estado para armazenar os clientes cadastrados
     const [clientes, setCliente] = useState([]);
     const [objCliente, setObjCliente] = useState(cliente);
-
-    // Estado para armazenar os agentes imobiliarios cadastrados
-    const [agentes, setAgente] = useState([]);
-    const [objAgente, setObjAgente] = useState(agente);
 
     // Cria outro só para listagem de agentes da tela de consultoria?
     const [listaagentes, setListaAgente] = useState([]);
@@ -182,31 +168,6 @@ function App() {
             })
     }
 
-    //cadastrar agente
-    {/*const cadastrarAgente = () => {
-    fetch('http://localhost:8080/agente/cadastrar', {
-      method: 'post',
-      body: JSON.stringify(objAgente),
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }) //colocar aqui url do backend
-      .then(retorno => retorno.json())
-      .then(retorno_convertido => {
-
-        //colocar no back mensagens de erro! Conforme o video
-        if (retorno_convertido.mensagem !== undefined) {
-          alert(retorno_convertido.mesagem);
-        } else {
-          setAgente([...agentes, retorno_convertido]);
-          alert('Cliente cadastrado com sucesso!');
-          limparFormularioAgente();
-        }
-
-      })
-  }*/}
-
     //obtendo os dados do formulario
     const aoDigitar = (e) => {
         setObjConsultoria({ ...objConsultoria, [e.target.name]: e.target.value });
@@ -215,11 +176,6 @@ function App() {
     //obtendo os dados do formulario cadastro cliente
     const aoDigitar1 = (e) => {
         setObjCliente({ ...objCliente, [e.target.name]: e.target.value });
-    }
-
-    //obtendo os dados do formulario cadastro agente
-    const aoDigitar2 = (e) => {
-        setObjAgente({ ...objAgente, [e.target.name]: e.target.value });
     }
 
     //cadastrar consultoria
@@ -315,11 +271,6 @@ function App() {
         setObjCliente(cliente);
     }
 
-    //limpar formulario agente
-    const limparFormularioAgente = () => {
-        setObjAgente(agente);
-    }
-
     //selecionar consultoria
     const selecionarConsultoria = (indice) => {
         setObjConsultoria(listaConsultorias[indice]);
@@ -344,7 +295,7 @@ function App() {
                         <Route path="/cadastro" element={<Telacadastro />} />
                         <Route path="/cadastrocliente" element={<CadastroCliente eventoTeclado={aoDigitar1} cadastrarCliente={cadastrarCliente} obj={objCliente} />} />
                         <Route path="/cadastroImob" element={<CadastroImob />} />
-                        <Route path="/cadastroAgente" element={<CadastroAgente eventoTeclado={aoDigitar2} />} />
+                        <Route path="/cadastroAgente" element={<CadastroAgente />} />
                         <Route path="/login" element={<Telalogin />} />
                         <Route path="/logincel" element={<Logincel />} />
                         <Route path="/telaprincipal" element={<Telaprincipal />} />
