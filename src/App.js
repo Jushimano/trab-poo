@@ -75,7 +75,7 @@ function App() {
 
   //UseEffect para pegar a lista dos agente cadastrados
   useEffect(() => {
-    fetch("http://localhost:8080/listarAgentes") // Rota do backend para listar os agentes cadastrados
+    fetch("http://localhost:8080/agente/todos") // Rota do backend para listar os agentes cadastrados
       .then(retorno => retorno.json())
       .then(listaagentes => setListaAgente(listaagentes));
   }, []);
@@ -115,7 +115,7 @@ function App() {
   }
 
   //cadastrar agente
-  const cadastrarAgente = () => {
+  {/*const cadastrarAgente = () => {
     fetch('http://localhost:8080/agente/cadastrar', {
       method: 'post',
       body: JSON.stringify(objAgente),
@@ -137,7 +137,7 @@ function App() {
         }
 
       })
-  }
+  }*/}
 
   //obtendo os dados do formulario
   const aoDigitar = (e) => {
@@ -289,7 +289,7 @@ function App() {
             <Route path="/cadastro" element={<Telacadastro />} />
             <Route path="/cadastrocliente" element={<CadastroCliente eventoTeclado={aoDigitar1} cadastrarCliente={cadastrarCliente} obj={objCliente} />} />
             <Route path="/cadastroImob" element={<CadastroImob />} />
-            <Route path="/cadastroAgente" element={<CadastroAgente eventoTeclado={aoDigitar2} cadastrarAgente={cadastrarAgente} obj={objAgente} />} />
+            <Route path="/cadastroAgente" element={<CadastroAgente eventoTeclado={aoDigitar2} />} />
             <Route path="/login" element={<Telalogin />} />
             <Route path="/logincel" element={<Logincel />} />
             <Route path="/telaprincipal" element={<Telaprincipal />} />
@@ -299,8 +299,8 @@ function App() {
             <Route path="/telaprincipaladm" element={<Telaprincipaladm />} />
             <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
             <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} clientes={listaclientes} />} />
-            <Route path="/todosclientes" element={<Telatodosclientes clientes={listaclientes} obj={objCliente} selecionar={selecionarCliente} cancelar={limparFormularioCliente}/>} />
-            <Route path="/todasconsultorias" element={<Telatodasconsultorias vetor={consultorias} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} agentes={listaagentes} clientes={listaclientes}/>} />
+            <Route path="/todosclientes" element={<Telatodosclientes clientes={listaclientes} obj={objCliente} selecionar={selecionarCliente} cancelar={limparFormularioCliente} />} />
+            <Route path="/todasconsultorias" element={<Telatodasconsultorias vetor={consultorias} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} agentes={listaagentes} clientes={listaclientes} />} />
           </Routes>
         </div>
       </Router>
