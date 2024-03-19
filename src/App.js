@@ -64,7 +64,9 @@ function App() {
     const [listaagentes, setListaAgente] = useState([]);
 
     // Cria outro só para listagem de agentes da tela de consultoria?
-    const [listaclientes, setListaClientes] = useState([]);
+    const [listaClientes, setListaClientes] = useState([]);
+
+    const [listaConsultorias, setListaConsultorias] = useState([]);
 
     //UseEffect
     useEffect(() => {
@@ -80,7 +82,7 @@ function App() {
                 setConsultoria(consultorias);
             }
         }
-        
+
         fetchData();
     }, []);
 
@@ -112,6 +114,37 @@ function App() {
                 } else {
                     const listaclientes = await response.json();
                     setListaClientes(listaclientes);
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                // Handle network or other errors
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    //UseEffect para pegar a lista das consultorias cadastrados
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/consultoria/todos", {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                });
+
+                if (!response.ok) {
+                    // Handle 403 and other non-OK status codes
+                    if (response.status === 403) {
+                        console.error("Error: Access denied (403)");
+                        // Handle the 403 error specifically (e.g., display error message, redirect)
+                        // Your specific actions here (replace with your desired logic)
+                    } else {
+                        console.error("Error:", response.status);
+                        // Handle other non-OK status codes (e.g., display generic error message)
+                    }
+                } else {
+                    const listaConsultorias = await response.json();
+                    setListaConsultorias(listaConsultorias);
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -289,12 +322,12 @@ function App() {
 
     //selecionar consultoria
     const selecionarConsultoria = (indice) => {
-        setObjConsultoria(consultorias[indice]);
+        setObjConsultoria(listaConsultorias[indice]);
     }
 
-    //selecionar consultoria
+    //selecionar cliente
     const selecionarCliente = (indice) => {
-        setObjConsultoria(clientes[indice]);
+        setObjCliente(listaClientes[indice]);
     }
 
     return (
@@ -315,9 +348,9 @@ function App() {
                         <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
                         <Route path="/telaprincipaladm" element={<Telaprincipaladm />} />
                         <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
-                        <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} clientes={listaclientes} />} />
-                        <Route path="/todosclientes" element={<Telatodosclientes clientes={listaclientes} obj={objCliente} selecionar={selecionarCliente} cancelar={limparFormularioCliente} />} />
-                        <Route path="/todasconsultorias" element={<Telatodasconsultorias vetor={consultorias} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} agentes={listaagentes} clientes={listaclientes} />} />
+                        <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} clientes={listaClientes} />} />
+                        <Route path="/todosclientes" element={<Telatodosclientes clientes={listaClientes} obj={objCliente} selecionar={selecionarCliente} cancelar={limparFormularioCliente} />} />
+                        <Route path="/todasconsultorias" element={<Telatodasconsultorias vetor={listaConsultorias} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} agentes={listaagentes} clientes={listaClientes} />} />
                     </Routes>
                 </div>
             </Router>

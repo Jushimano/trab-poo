@@ -17,6 +17,7 @@ function Telaprincipal() {
     };
 
     const handleSairClick = () => {
+        localStorage.removeItem('token');
         navigate('/login');
     };
 

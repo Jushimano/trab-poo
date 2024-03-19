@@ -17,18 +17,21 @@ function Telaprincipal() {
     };
 
     const handleSairClick = () => {
+        localStorage.removeItem('token');
         navigate('/login');
     };
 
     const handletodasConsultoriaClick = () => {
-       navigate('/todasconsultorias')
+        navigate('/todasconsultorias')
+        window.location.reload();
         console.log("Botão de consultoria clicado!");
     };
 
     const handletodosClientesClick = () => {
         navigate('/todosclientes')
-         console.log("Botão de consultoria clicado!");
-     };
+        window.location.reload(); 
+        console.log("Botão de consultoria clicado!");
+    };
 
     return (
         <div className="container">
@@ -41,15 +44,15 @@ function Telaprincipal() {
                 <button className={activeButton === 'casas' ? 'active' : ''} onClick={() => setActiveButton('casas')}>Casas</button>
                 <button className={activeButton === 'comercial' ? 'active' : ''} onClick={() => setActiveButton('comercial')}>Comercial</button>
             </div>
-            {activeButton === 'apartamentos' && <img src={noah} alt="Imagem Apartamento" className="noah1" onClick={handleImageClick}/>}
+            {activeButton === 'apartamentos' && <img src={noah} alt="Imagem Apartamento" className="noah1" onClick={handleImageClick} />}
             {activeButton === 'casas' && <img src={casa} alt="Imagem Casas" className="noah1" />}
             {activeButton === 'comercial' && <img src={atrium} alt="Imagem Comercial" className="noah1" />}
             <div className="button-group">
                 <button className='consultoria' onClick={handletodasConsultoriaClick}>Consultoria</button>
                 <button className='cliente' onClick={handletodosClientesClick} style={{ marginLeft: '10px' }}>Cliente</button>
             </div>
-            <button  className = 'sair' onClick={handleSairClick}>Sair</button>
-            <img src={home} alt = "" className="home"></img>
+            <button className='sair' onClick={handleSairClick}>Sair</button>
+            <img src={home} alt="" className="home"></img>
         </div>
     )
 }

@@ -19,8 +19,8 @@ function todasconsultorias({ vetor, obj, selecionar, cancelar, agentes, clientes
         <div className="container1">
             <text className="titulo_con">CONSULTORIAS</text>
             <form>
-                <input type='text' value={encontrarNomeCliente(obj.cpf) || 'Nome do Cliente'} readOnly name='cpf' className="texto_info1" />
-                <input type='text' value={encontrarNomeAgente(obj.creci) || 'Nome do Agente'} readOnly name='creci' className="texto_info1" />
+                <input type='text' value={encontrarNomeCliente(obj.cpfCliente)} readOnly name='cpf' className="texto_info1" />
+                <input type='text' value={encontrarNomeAgente(obj.creciAgente)} readOnly name='creci' className="texto_info1" />
                 <input type='date' value={obj.data } readOnly name='data' placeholder='Data' className="texto_info1" style={{ textAlign: 'center' }}/>
                 <input type='time' value={obj.hora} readOnly name='hora' placeholder='Horario' className="texto_info1" />
                 <input type='button' value='Cancelar' onClick={cancelar} className="botao_con1" />
@@ -40,7 +40,7 @@ function todasconsultorias({ vetor, obj, selecionar, cancelar, agentes, clientes
                                 <tr key={indice}>
                                     <td className="coluna1">{indice + 1}</td>
                                     <td className="coluna2">
-                                        {encontrarNomeAgente(obj.creci)}
+                                        {encontrarNomeAgente(obj.creciAgente)}
                                     </td>
                                     <td className="coluna3">
                                         <button onClick={() => { selecionar(indice) }} className='botao_selecionar'>Selecionar</button>
