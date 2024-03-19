@@ -22,7 +22,7 @@ function Telaprincipal() {
     };
 
     const handletodosClientesClick = () => {
-        navigate('/todasclientes')
+        navigate('/todosclientes')
          console.log("Botão de consultoria clicado!");
      };
 

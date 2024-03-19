@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '/home/julia/POO/imobilearea_poo/src/authcontext'; // Importe o hook useAuth
+import { useAuth } from '../../authcontext'; // Importe o hook useAuth
 import './Logincel.css';
 
 function Logincel() {
@@ -8,18 +8,18 @@ function Logincel() {
     const { login } = useAuth(); // Use o hook useAuth para obter a função de login
 
     const [accountType, setAccountType] = useState('cliente');
-    const [info, setInfo] = useState('');
-    const [password, setPassword] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [senha, setSenha] = useState('');
 
     const handleLogin = async () => {
         try {
             // Enviar as credenciais para o backend
-            const response = await fetch('URL_DO_BACKEND/login', {
+            const response = await fetch('http://localhost:8080/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ info, password, accountType }), // Adiciona o accountType
+                body: JSON.stringify({ telefone, senha }), // Adiciona o accountType
             });
 
             const data = await response.json();
@@ -27,12 +27,12 @@ function Logincel() {
             // Verificar se as credenciais foram autenticadas com sucesso
             if (response.ok) {
                 // Credenciais válidas, chamar a função de login do contexto de autenticação
-                login(data); // Passa os dados do usuário autenticado para o contexto de autenticação
+                localStorage.setItem('token', data.token); // Passa os dados do usuário autenticado para o contexto de autenticação
 
                 // Redirecionar para a página apropriada com base no tipo de conta
-                if (data.accountType === 'cliente') {
+                if (accountType === 'cliente') {
                     navigate('/telaprincipal');
-                } else if (data.accountType === 'adm') {
+                } else if (accountType === 'adm') {
                     navigate('/telaprincipaladm');
                 }
             } else {
@@ -49,9 +49,9 @@ function Logincel() {
         <div className='container'>
             <p className="texto_login">Login com número<br></br> de celular/telefone</p>
             <p className="texto_add">Por favor, adicione corretamente o seu<br></br>CPF ou CNPJ ou CRECI:</p>
-            <input type="text" className="box_cel" value={info} onChange={(e) => setInfo(e.target.value)} /><br></br>
+            <input type="text" className="box_cel" value={telefone} onChange={(e) => setTelefone(e.target.value)} /><br></br>
             <p className="texto_senha">Digite sua senha:<br></br></p>
-            <input type="password" className="box_senha1" value={password} onChange={(e) => setPassword(e.target.value)} /><br></br>
+            <input type="password" className="box_senha1" value={senha} onChange={(e) => setSenha(e.target.value)} /><br></br>
             <p className="conta">Conta:</p>
             <select value={accountType} onChange={(e) => setAccountType(e.target.value)} className="opcao">
                 <option value="cliente">Cliente</option>

@@ -20,102 +20,137 @@ import { AuthProvider } from './authcontext'
 
 function App() {
 
-  //objeto consultoria
-  const consultoria = {
-    id: 0,
-    data: '',
-    hora: '',
-    creci: '',
-    cpf: '',
-  }
+    //objeto consultoria
+    const consultoria = {
+        id: 0,
+        data: '',
+        hora: '',
+        creciAgente: '',
+        cpf: '',
+    }
 
-  //objeto cliente
-  const cliente = {
-    nome: '',
-    telefone: '',
-    email: '',
-    cpf: '',
-    senha: '',
-  };
+    //objeto cliente
+    const cliente = {
+        nome: '',
+        telefone: '',
+        email: '',
+        cpf: '',
+        senha: '',
+    };
 
-  //objeto agente
-  const agente = {
-    nome: '',
-    celular: '',
-    email: '',
-    creci: '',
-    senha: '',
-  };
+    //objeto agente
+    const agente = {
+        nome: '',
+        celular: '',
+        email: '',
+        creci: '',
+        senha: '',
+    };
 
 
-  //useState
-  const [consultorias, setConsultoria] = useState([]);
-  const [objConsultoria, setObjConsultoria] = useState(consultoria);
+    //useState
+    const [consultorias, setConsultoria] = useState([]);
+    const [objConsultoria, setObjConsultoria] = useState(consultoria);
 
-  // Estado para armazenar os clientes cadastrados
-  const [clientes, setCliente] = useState([]);
-  const [objCliente, setObjCliente] = useState(cliente);
+    // Estado para armazenar os clientes cadastrados
+    const [clientes, setCliente] = useState([]);
+    const [objCliente, setObjCliente] = useState(cliente);
 
-  // Estado para armazenar os agentes imobiliarios cadastrados
-  const [agentes, setAgente] = useState([]);
-  const [objAgente, setObjAgente] = useState(agente);
+    // Estado para armazenar os agentes imobiliarios cadastrados
+    const [agentes, setAgente] = useState([]);
+    const [objAgente, setObjAgente] = useState(agente);
 
-  // Cria outro só para listagem de agentes da tela de consultoria?
-  const [listaagentes, setListaAgente] = useState([]);
+    // Cria outro só para listagem de agentes da tela de consultoria?
+    const [listaagentes, setListaAgente] = useState([]);
 
-  // Cria outro só para listagem de agentes da tela de consultoria?
-  const [listaclientes, setListaClientes] = useState([]);
+    // Cria outro só para listagem de agentes da tela de consultoria?
+    const [listaclientes, setListaClientes] = useState([]);
 
-  //UseEffect
-  useEffect(() => {
-    fetch("http://localhost:8080/consultoria/todos") //colocar aqui a url da aplicação backend que retorna a lista
-      .then(retorno => retorno.json())
-      .then(retorno_convertido => setConsultoria(retorno_convertido));
-  }, []);
+    //UseEffect
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("http://localhost:8080/consultoria", {
+                headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+            });
 
-  //UseEffect para pegar a lista dos agente cadastrados
-  useEffect(() => {
-    fetch("http://localhost:8080/agente/todos") // Rota do backend para listar os agentes cadastrados
-      .then(retorno => retorno.json())
-      .then(listaagentes => setListaAgente(listaagentes));
-  }, []);
-
-  //UseEffect para pegar a lista dos clientes cadastrados
-  useEffect(() => {
-    fetch("http://localhost:8080/cliente/todos") // Rota do backend para listar os agentes cadastrados
-      .then(retorno => retorno.json())
-      .then(listaclientes => setListaClientes(listaclientes));
-  }, []);
-
-  //cadastrar cliente
-  const cadastrarCliente = () => {
-    fetch('http://localhost:8080/cliente', {
-      method: 'post',
-      body: JSON.stringify(objCliente),
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }) //colocar aqui url do backend
-      .then(retorno => retorno.json())
-      .then(retorno_convertido => {
-
-        //colocar no back mensagens de erro! Conforme o video
-        if (retorno_convertido.mensagem !== undefined) {
-          console.log("1");
-          alert(retorno_convertido.mensagem);
-        } else {
-          setCliente([...clientes, retorno_convertido]);
-          console.log("2");
-          alert('Cliente cadastrado com sucesso!');
-          limparFormularioCliente();
+            if (!response.ok) {
+                console.error("Error:", response.status);
+            } else {
+                const consultorias = await response.json();
+                setConsultoria(consultorias);
+            }
         }
+        
+        fetchData();
+    }, []);
 
-      })
-  }
+    //UseEffect para pegar a lista dos agente cadastrados
+    useEffect(() => {
+        fetch("http://localhost:8080/agente/todos") // Rota do backend para listar os agentes cadastrados
+            .then(retorno => retorno.json())
+            .then(listaagentes => setListaAgente(listaagentes));
+    }, []);
 
-  //cadastrar agente
-  {/*const cadastrarAgente = () => {
+    //UseEffect para pegar a lista dos clientes cadastrados
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/cliente/todos", {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                });
+
+                if (!response.ok) {
+                    // Handle 403 and other non-OK status codes
+                    if (response.status === 403) {
+                        console.error("Error: Access denied (403)");
+                        // Handle the 403 error specifically (e.g., display error message, redirect)
+                        // Your specific actions here (replace with your desired logic)
+                    } else {
+                        console.error("Error:", response.status);
+                        // Handle other non-OK status codes (e.g., display generic error message)
+                    }
+                } else {
+                    const listaclientes = await response.json();
+                    setListaClientes(listaclientes);
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                // Handle network or other errors
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    //cadastrar cliente
+    const cadastrarCliente = () => {
+        fetch('http://localhost:8080/auth/registrar', {
+            method: 'post',
+            body: JSON.stringify(objCliente),
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }) //colocar aqui url do backend
+            .then(retorno => retorno.json())
+            .then(retorno_convertido => {
+
+                //colocar no back mensagens de erro! Conforme o video
+                if (retorno_convertido.mensagem !== undefined) {
+                    console.log("1");
+                    alert(retorno_convertido.mensagem);
+                } else {
+                    setCliente([...clientes, retorno_convertido]);
+                    console.log("2");
+                    alert('Cliente cadastrado com sucesso!');
+                    limparFormularioCliente();
+                }
+
+            })
+    }
+
+    //cadastrar agente
+    {/*const cadastrarAgente = () => {
     fetch('http://localhost:8080/agente/cadastrar', {
       method: 'post',
       body: JSON.stringify(objAgente),
@@ -139,173 +174,155 @@ function App() {
       })
   }*/}
 
-  //obtendo os dados do formulario
-  const aoDigitar = (e) => {
-    setObjConsultoria({ ...objConsultoria, [e.target.name]: e.target.value });
-  }
+    //obtendo os dados do formulario
+    const aoDigitar = (e) => {
+        setObjConsultoria({ ...objConsultoria, [e.target.name]: e.target.value });
+    }
 
-  //obtendo os dados do formulario cadastro cliente
-  const aoDigitar1 = (e) => {
-    setObjCliente({ ...objCliente, [e.target.name]: e.target.value });
-  }
+    //obtendo os dados do formulario cadastro cliente
+    const aoDigitar1 = (e) => {
+        setObjCliente({ ...objCliente, [e.target.name]: e.target.value });
+    }
 
-  //obtendo os dados do formulario cadastro agente
-  const aoDigitar2 = (e) => {
-    setObjAgente({ ...objAgente, [e.target.name]: e.target.value });
-  }
+    //obtendo os dados do formulario cadastro agente
+    const aoDigitar2 = (e) => {
+        setObjAgente({ ...objAgente, [e.target.name]: e.target.value });
+    }
 
-  //cadastrar consultoria
-  const cadastrar = () => {
-    fetch('http://localhost:8080/consultoria', {
-      method: 'post',
-      body: JSON.stringify(objConsultoria),
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }) //colocar aqui url do backend
-      .then(retorno => retorno.json())
-      .then(retorno_convertido => {
+    //cadastrar consultoria
+    const cadastrar = () => {
+        fetch('http://localhost:8080/consultoria', {
+            method: 'post',
+            body: JSON.stringify(objConsultoria),
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }) //colocar aqui url do backend
+            .then(retorno => retorno.json())
+            .then(retorno_convertido => {
 
-        //colocar no back mensagens de erro! Conforme o video
-        if (retorno_convertido.mensagem !== undefined) {
-          alert(retorno_convertido.mesagem);
-        } else {
-          setConsultoria([...consultorias, retorno_convertido]);
-          alert('Consultoria cadastrada com sucesso!');
-          limparFormulario();
-        }
+                //colocar no back mensagens de erro! Conforme o video
+                if (retorno_convertido.mensagem !== undefined) {
+                    alert(retorno_convertido.mesagem);
+                } else {
+                    setConsultoria([...consultorias, objConsultoria]);
+                    alert('Consultoria cadastrada com sucesso!');
+                    limparFormulario();
+                    window.location.reload();
+                }
+            })
+    }
 
-      })
-  }
+    //Alterar produto
+    const alterar = () => {
+        fetch('http://localhost:8080/consultoria/' + objConsultoria.id, {
+            method: 'put',
+            body: JSON.stringify(objConsultoria),
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }) //colocar aqui url do backend
+            .then(retorno => retorno.json())
+            .then(retorno_convertido => {
 
-  //Alterar produto
-  const alterar = () => {
-    fetch('http://localhost:8080/consultoria/' + objConsultoria.codigo, {
-      method: 'patch',
-      body: JSON.stringify(objConsultoria),
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }) //colocar aqui url do backend
-      .then(retorno => retorno.json())
-      .then(retorno_convertido => {
+                //colocar no back mensagens de erro! Conforme o video
+                if (retorno_convertido.mensagem !== undefined) {
+                    alert(retorno_convertido.mesagem);
+                } else {
+                    //mensagem
+                    alert('Consultoria alterado com sucesso!');
 
-        //colocar no back mensagens de erro! Conforme o video
-        if (retorno_convertido.mensagem !== undefined) {
-          alert(retorno_convertido.mesagem);
-        } else {
-          //mensagem
-          alert('Consultoria alterado com sucesso!');
+                    //copia do vetor de consultorias
+                    let vetorTemp = [...consultorias];
 
-          //copia do vetor de consultorias
-          let vetorTemp = [...consultorias];
+                    // indice 
+                    let indice = vetorTemp.findIndex((c) => {
+                        return c.codigo === objConsultoria.codigo;
+                    });
 
-          // indice 
-          let indice = vetorTemp.findIndex((c) => {
-            return c.codigo === objConsultoria.codigo;
-          });
+                    // Alterar consultoria do vetorTemp
+                    vetorTemp[indice] = objConsultoria;
 
-          // Alterar consultoria do vetorTemp
-          vetorTemp[indice] = objConsultoria;
+                    // Atualizar o veto de consultorias
+                    setConsultoria(vetorTemp);
 
-          // Atualizar o veto de consultorias
-          setConsultoria(vetorTemp);
+                    //liparformulario
+                    limparFormulario();
 
-          //liparformulario
-          limparFormulario();
-        }
+                    window.location.reload();
+                }
 
-      })
-  }
+            })
+    }
 
-  //remover produto
-  const remover = () => {
-    fetch('http://localhost:8080/consultoria/' + objConsultoria.codigo, {
-      method: 'delete',
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }) //colocar aqui url do backend
-      .then(retorno => retorno.json())
-      .then(retorno_convertido => {
+    //remover produto
+    const remover = () => {
+        fetch('http://localhost:8080/consultoria/' + objConsultoria.id, {
+            method: 'delete',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        window.location.reload();
+    }
 
-        // Mensagem
-        alert(retorno_convertido.mensagem);
+    //limpar formulario
+    const limparFormulario = () => {
+        setObjConsultoria(consultoria);
+    }
 
-        //copia do vetor de consultorias
-        let vetorTemp = [...consultorias];
+    //limpar formulario cliente
+    const limparFormularioCliente = () => {
+        setObjCliente(cliente);
+    }
 
-        // indice 
-        let indice = vetorTemp.findIndex((c) => {
-          return c.codigo === objConsultoria.codigo;
-        });
+    //limpar formulario agente
+    const limparFormularioAgente = () => {
+        setObjAgente(agente);
+    }
 
-        // Remover consultoria do vetorTemp
-        vetorTemp.splice(indice, 1);
+    //selecionar consultoria
+    const selecionarConsultoria = (indice) => {
+        setObjConsultoria(consultorias[indice]);
+    }
 
-        // Atualizar o veto de consultorias
-        setConsultoria(vetorTemp);
+    //selecionar consultoria
+    const selecionarCliente = (indice) => {
+        setObjConsultoria(clientes[indice]);
+    }
 
-        // Limpar formulário
-        limparFormulario();
-
-      })
-  }
-
-  //limpar formulario
-  const limparFormulario = () => {
-    setObjConsultoria(consultoria);
-  }
-
-  //limpar formulario cliente
-  const limparFormularioCliente = () => {
-    setObjCliente(cliente);
-  }
-
-  //limpar formulario agente
-  const limparFormularioAgente = () => {
-    setObjAgente(agente);
-  }
-
-  //selecionar consultoria
-  const selecionarConsultoria = (indice) => {
-    setObjConsultoria(consultorias[indice]);
-  }
-
-  //selecionar consultoria
-  const selecionarCliente = (indice) => {
-    setObjConsultoria(clientes[indice]);
-  }
-
-  return (
-    <AuthProvider>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Telalogin />} />
-            <Route path="/cadastro" element={<Telacadastro />} />
-            <Route path="/cadastrocliente" element={<CadastroCliente eventoTeclado={aoDigitar1} cadastrarCliente={cadastrarCliente} obj={objCliente} />} />
-            <Route path="/cadastroImob" element={<CadastroImob />} />
-            <Route path="/cadastroAgente" element={<CadastroAgente eventoTeclado={aoDigitar2} />} />
-            <Route path="/login" element={<Telalogin />} />
-            <Route path="/logincel" element={<Logincel />} />
-            <Route path="/telaprincipal" element={<Telaprincipal />} />
-            <Route path="/noah" element={<Telanoah />} />
-            <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
-            <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
-            <Route path="/telaprincipaladm" element={<Telaprincipaladm />} />
-            <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
-            <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} clientes={listaclientes} />} />
-            <Route path="/todosclientes" element={<Telatodosclientes clientes={listaclientes} obj={objCliente} selecionar={selecionarCliente} cancelar={limparFormularioCliente} />} />
-            <Route path="/todasconsultorias" element={<Telatodasconsultorias vetor={consultorias} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} agentes={listaagentes} clientes={listaclientes} />} />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
-  );
+    return (
+        <AuthProvider>
+            <Router>
+                <div className="App">
+                    <Routes>
+                        <Route path="/" element={<Telalogin />} />
+                        <Route path="/cadastro" element={<Telacadastro />} />
+                        <Route path="/cadastrocliente" element={<CadastroCliente eventoTeclado={aoDigitar1} cadastrarCliente={cadastrarCliente} obj={objCliente} />} />
+                        <Route path="/cadastroImob" element={<CadastroImob />} />
+                        <Route path="/cadastroAgente" element={<CadastroAgente eventoTeclado={aoDigitar2} />} />
+                        <Route path="/login" element={<Telalogin />} />
+                        <Route path="/logincel" element={<Logincel />} />
+                        <Route path="/telaprincipal" element={<Telaprincipal />} />
+                        <Route path="/noah" element={<Telanoah />} />
+                        <Route path="/telaprincipalAg" element={<TelaprincipalAg />} />
+                        <Route path="/telaprincipalImob" element={<TelaprincipalImob />} />
+                        <Route path="/telaprincipaladm" element={<Telaprincipaladm />} />
+                        <Route path="/formulario" element={<Telaconsultoria vetor={consultorias} eventoTeclado={aoDigitar} cadastrar={cadastrar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} alterar={alterar} agentes={listaagentes} />} />
+                        <Route path="/formularioAgente" element={<TelaconsultoriaAg vetor={consultorias} eventoTeclado={aoDigitar} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} remover={remover} clientes={listaclientes} />} />
+                        <Route path="/todosclientes" element={<Telatodosclientes clientes={listaclientes} obj={objCliente} selecionar={selecionarCliente} cancelar={limparFormularioCliente} />} />
+                        <Route path="/todasconsultorias" element={<Telatodasconsultorias vetor={consultorias} obj={objConsultoria} selecionar={selecionarConsultoria} cancelar={limparFormulario} agentes={listaagentes} clientes={listaclientes} />} />
+                    </Routes>
+                </div>
+            </Router>
+        </AuthProvider>
+    );
 }
 
 export default App;

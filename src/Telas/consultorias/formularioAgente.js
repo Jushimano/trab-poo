@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from '/home/julia/POO/imobilearea_poo/src/authcontext';
+import { useAuth } from '../../authcontext';
 import './formularioAgente.css';
 
 function Formulario({ vetor, eventoTeclado, obj, selecionar, cancelar, remover, clientes }) {

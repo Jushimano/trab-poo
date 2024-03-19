@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from '/home/julia/POO/imobilearea_poo/src/authcontext'; // Importe o hook useAuth
+import { useAuth } from '../../authcontext'; // Importe o hook useAuth
 import './formulario.css';
 
 function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar, remover, alterar, agentes }) {
@@ -14,7 +14,7 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
             <text className="titulo_con">CONSULTORIAS</text>
             <form>
                 <input type='text' value={obj.cpf || 'Seu CPF'} readOnly name='cpf' className="texto_info" />
-                <select value={obj.creci} onChange={eventoTeclado} name='creci' className="texto_info">
+                <select value={obj.creciAgente} onChange={eventoTeclado} name='creciAgente' className="texto_info">
                     <option value="">Selecione o agente</option>
                     {agentes.map((agente, index) => (
                         <option key={index} value={agente.creci}>{agente.nome}</option>
@@ -22,7 +22,7 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
                 </select>
 
                 <input type='date' value={obj.data} onChange={eventoTeclado} name='data' placeholder='Data' className="texto_info" />
-                <input type='time' value={obj.hora} onChange={eventoTeclado} name='horario' placeholder='Horario' className="texto_info" />
+                <input type='text' value={obj.hora} onChange={eventoTeclado} name='hora' placeholder='Horario' className="texto_info" />
 
                 <div className="button-wrapper">
                     <input type='button' value='Cadastrar' onClick={cadastrar} className="botao_con" />
@@ -43,13 +43,13 @@ function Formulario({ vetor, eventoTeclado, cadastrar, obj, selecionar, cancelar
                     {
                         vetor.map((obj, indice) => (
                             // Verifica se o CPF do cliente ativo é igual ao CPF associado à consultoria
-                            (obj.cpfCliente === cpfUsuarioAtivo) && (
+                            (
                                 <tr key={indice}>
                                     <td className="coluna1">{indice + 1}</td>
                                     <td className="coluna2">
                                         {
                                             // Encontra o agente correspondente no array 'agentes' usando o CRECI
-                                            agentes.find(agente => agente.creci === obj.creci)?.nome || 'Agente não encontrado'
+                                            agentes.find(agente => agente.creci === obj.creciAgente)?.nome || 'Agente não encontrado'
                                         }
                                     </td>
                                     <td className="coluna3">
