@@ -9,7 +9,7 @@ function Noah() {
     const navigate = useNavigate();
 
     const handleapart = () => {
-        navigate('/TelaprincipalImob');
+        navigate('/Telaprincipal');
     };
     return (
         <div className="container">
